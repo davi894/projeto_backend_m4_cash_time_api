@@ -7,7 +7,7 @@
 |:-------:|:-------------:|
 |         |               |
 
-## POST
+## ROTA USER
 
 ```
 POST - /user
@@ -17,39 +17,12 @@ POST - /user
 
 ```
 ```
-POST -  /project
+PATCH  - /user/:user_id
 {
  
 }
 ```
 
-
-```
-POST - /checkpoint/:project_id
-{
- 
-}
-```
----
-## GET
-
-
-```
-GET 
-{
- 
-}
-```
----
-## DELETE
-
-
-```
-DELETE - /project/:project_id
-{
- 
-}
-```
 
 ```
 DELETE - /user/:user_id
@@ -58,23 +31,82 @@ DELETE - /user/:user_id
 }
 ```
 ---
-## PACTH
+## ROTA SESSION
 
 
 ```
- rota user - /user/:user_id
+POST  - /login
+{
+ 
+}
+```
+---
+## ROTA PROJECT
+
+
+```
+POST    /project 
 {
  
 }
 ```
 
->checkpoint
+
+
+---
+## ROTA CHECKPOINT
+
 ```
- rota checkpoint - /checkpoint/:project_id 
+ PATCH - /user/:user_id
 {
  
 }
 ```
 
+>
+```
+  GET     /project 
+{
+ 
+}
+```
 
+```
+  GET     /project 
+{
+ 
+}
+```
+
+```
+  GET     /project 
+{
+ 
+}
+```
+
+```
+  GET     /project 
+{
+ 
+}
+```
+
+## ROTA TOTAL
+
+
+```
+ PATCH - /user/:user_id
+{
+ 
+}
+```
+
+>
+```
+  PATCH - /checkpoint/:project_id 
+{
+ 
+}
+```
 
