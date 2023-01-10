@@ -7,19 +7,12 @@
 |:-------:|:-------------:|
 |   Typescript  |bcryptjs            |
 |    NodeJS     |jsonwebtoken        |
-|               |jest                |
+|    Shell      |jest                |
 |               |uuid-validate       |
 |               |express-async-errors|
 |               |reflect-metadata    |
 |               |typeorm             |
 |               |yup                 |
-
-
-
-
-
-
-
 
 ## ROTA USER
 
@@ -36,8 +29,6 @@ PATCH  - /user/:user_id
  
 }
 ```
-
-
 ```
 DELETE - /user/:user_id
 {
@@ -46,8 +37,6 @@ DELETE - /user/:user_id
 ```
 ---
 ## ROTA SESSION
-
-
 ```
 POST  - /login
 {
@@ -56,50 +45,42 @@ POST  - /login
 ```
 ---
 ## ROTA PROJECT
-
-
 ```
 POST    /project 
 {
  
 }
 ```
-
 ```
 GET    /project 
 {
  
 }
 ```
-
 ```
 GET - /project/:id 
 {
  
 }
 ```
-
 ```
 GET - /project/:id/checkpoint 
 {
  
 }
 ```
-
 ```
 PATCH - /project/:id  
 {
  
 }
 ```
-
 ```
 DELETE   - /project/:id  
 {
  
 }
 ```
-
 ---
 ## ROTA CHECKPOINT
 
@@ -109,30 +90,25 @@ DELETE   - /project/:id
  
 }
 ```
-
 ```
 POST - /checkpoint/:project_id
 {
  
 }
 ```
-
 ```
 PATCH - /checkpoint/:project_id
 {
  
 }
 ```
-
 ## ROTA TOTAL
-
 ```
 GET  - /project/total
 {
  
 }
 ```
-
 ```
 GET /poject/:project_id/total
 {
