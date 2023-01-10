@@ -5,7 +5,21 @@
 ## TECHS E BIBLIOTECAS
 | TECHS | BIBLIOTECAS |
 |:-------:|:-------------:|
-|         |               |
+|   Typescript  |bcryptjs            |
+|    NodeJS     |jsonwebtoken        |
+|               |jest                |
+|               |uuid-validate       |
+|               |express-async-errors|
+|               |reflect-metadata    |
+|               |typeorm             |
+|               |yup                 |
+
+
+
+
+
+
+
 
 ## ROTA USER
 
@@ -51,7 +65,40 @@ POST    /project
 }
 ```
 
+```
+GET    /project 
+{
+ 
+}
+```
 
+```
+GET - /project/:id 
+{
+ 
+}
+```
+
+```
+GET - /project/:id/checkpoint 
+{
+ 
+}
+```
+
+```
+PATCH - /project/:id  
+{
+ 
+}
+```
+
+```
+DELETE   - /project/:id  
+{
+ 
+}
+```
 
 ---
 ## ROTA CHECKPOINT
@@ -63,30 +110,15 @@ POST    /project
 }
 ```
 
->
 ```
-  GET     /project 
+POST - /checkpoint/:project_id
 {
  
 }
 ```
 
 ```
-  GET     /project 
-{
- 
-}
-```
-
-```
-  GET     /project 
-{
- 
-}
-```
-
-```
-  GET     /project 
+PATCH - /checkpoint/:project_id
 {
  
 }
@@ -94,19 +126,16 @@ POST    /project
 
 ## ROTA TOTAL
 
-
 ```
- PATCH - /user/:user_id
+GET  - /project/total
 {
  
 }
 ```
 
->
 ```
-  PATCH - /checkpoint/:project_id 
+GET /poject/:project_id/total
 {
  
 }
 ```
-
