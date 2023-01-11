@@ -46,13 +46,13 @@ POST  - /login
 ---
 ## ROTA PROJECT
 ```
-POST    /project 
+POST  - /project 
 {
  
 }
 ```
 ```
-GET    /project 
+GET  - /project 
 {
  
 }
@@ -85,13 +85,13 @@ DELETE   - /project/:id
 ## ROTA CHECKPOINT
 
 ```
- PATCH - /user/:user_id
+POST - /checkpoint
 {
  
 }
 ```
 ```
-POST - /checkpoint/:project_id
+GET - /checkpoint/:project_id
 {
  
 }
@@ -102,7 +102,13 @@ PATCH - /checkpoint/:project_id
  
 }
 ```
-## ROTA TOTAL
+```
+DELETE - /checkpoint/:project_id
+{
+ 
+}
+```
+## ROTA VALOR TOTAL
 ```
 GET  - /project/total
 {
