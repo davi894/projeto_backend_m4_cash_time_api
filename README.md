@@ -15,66 +15,68 @@
 |               |yup                 |
 
 ## ROTA USER
-
+>**Cadastro/registro de usuário**
 ```
-POST - /user
+POST - /user 
 {
 
 }
 
 ```
+>**Atualização de usuário**
 ```
-PATCH  - /user/:user_id
+PATCH  - /user/:user_id 
 {
  
 }
 ```
+>**deleção de usuário pelo soft delete**
 ```
-DELETE - /user/:user_id
+DELETE - /user/:user_id 
 {
  
 }
 ```
 ---
+>**Login do usuário**
 ## ROTA SESSION
 ```
-POST  - /login
+POST  - /login 
 {
  
 }
 ```
 ---
 ## ROTA PROJECT
+>**Cadastro/registro do projeto**
 ```
-POST  - /project 
+POST  - /project  
 {
  
 }
 ```
+>**Listagem de todos os projetos**
 ```
 GET  - /project 
 {
  
 }
 ```
+>**Listagem de um projeto em específico**
 ```
-GET - /project/:id 
+GET - /project/:id  
 {
  
 }
 ```
-```
-GET - /project/:id/checkpoint 
-{
- 
-}
-```
+>**Atualização de um projeto em específico**
 ```
 PATCH - /project/:id  
 {
  
 }
 ```
+>**Deleção de um projeto em específico**
 ```
 DELETE   - /project/:id  
 {
@@ -83,40 +85,52 @@ DELETE   - /project/:id
 ```
 ---
 ## ROTA CHECKPOINT
-
+>**Ponto de registro do início e de fim da jornada de trabalho**
 ```
-POST - /checkpoint
+POST - /checkpoint 
 {
  
 }
 ```
+>**Listar todos os checkinpoints de um projeto em específico**
 ```
-GET - /checkpoint/:project_id
+GET - /checkpoint/project/:project_id 
 {
  
 }
 ```
+>**Atualização do checkinpoint de um projeto em específico**
 ```
-PATCH - /checkpoint/:project_id
+PATCH - /checkpoint/checkpoint_id/project/:project_id 
 {
  
 }
 ```
+>**Deleção do checkinpoint de um projeto em específico**
 ```
-DELETE - /checkpoint/:project_id
+DELETE - /checkpoint/checkpoint_id/project/:project_id 
 {
  
 }
 ```
 ## ROTA VALOR TOTAL
+>**Soma do valor de todos os projetos**
 ```
-GET  - /project/total
+GET  - /project/total 
 {
  
 }
 ```
+>**Valor total do projeto específico**
 ```
 GET /poject/:project_id/total
+{
+ 
+}
+```
+>**Valor por hora do projeto em específico**
+```
+GET /poject/:project_id/totalHora
 {
  
 }
