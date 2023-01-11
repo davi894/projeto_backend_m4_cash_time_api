@@ -7,7 +7,7 @@ import {
     OneToMany,
     OneToOne,
     ManyToOne,
-  } from "typeorm";
+  } from "typeorm"
  import { hash } from "bcryptjs"; 
 import { Projects } from "./projects";
 import { Checkpoint } from "./checkpoint";

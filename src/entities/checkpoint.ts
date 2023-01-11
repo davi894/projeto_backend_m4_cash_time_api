@@ -7,7 +7,7 @@ import {
     OneToOne,
     ManyToOne,
     OneToMany
-} from "typeorm";
+} from "typeorm"
 
 import { User } from "./user";
 import { Projects } from "./projects";
