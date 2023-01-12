@@ -10,7 +10,7 @@ import {
 
 import { User } from "./user";
 import { Checkpoint } from "./checkpoint";
-import { time } from "console";
+
 
 @Entity("projects")
 export class Projects {
