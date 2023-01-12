@@ -1,9 +1,15 @@
 import { Router } from "express";
-import { createProjectsController, listProjectsController, listTotalOneProjectController } from "../../controllers/projects/projects.controller";
+
+import { createProjectsController, getOneProjectController, listProjectsController, listTotalOneProjectController } from "../../controllers/projects/projects.controller";
 
 
 export const projectsRouter = Router()
 
 projectsRouter.post("/",createProjectsController)
 projectsRouter.get("/",listProjectsController)
+
 projectsRouter.get("/:project_id/total",listTotalOneProjectController)
+
+projectsRouter.get("/:project_id/total")
+projectsRouter.get("/:id",getOneProjectController)
+
