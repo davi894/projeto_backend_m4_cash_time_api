@@ -1,3 +1,4 @@
+import { IProjectRequest } from "../../interfaces/project";
 import { IUserLogin, IUserRequest } from "../../interfaces/user";
 
 const mockedUser: IUserRequest = {
@@ -22,4 +23,18 @@ const mockedSecondUserLogin: IUserLogin = {
   password: "12345678",
 };
 
-export { mockedUser, mockedUserLogin, mockedSecondUser, mockedSecondUserLogin };
+const mockedProject: IProjectRequest = {
+  name: "Site de farmácia",
+  hour_value: 12.00,
+  total_value: 4800.00,
+  description:
+    "uma site para uma farmácia de grande porte, com delivery, centro de atendimento, cadastro e lgoin de usuários.",
+};
+
+export {
+  mockedUser,
+  mockedUserLogin,
+  mockedSecondUser,
+  mockedSecondUserLogin,
+  mockedProject,
+};
