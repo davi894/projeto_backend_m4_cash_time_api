@@ -10,7 +10,7 @@ interface IProjectsRequest{
 interface IProjectsUpdate{
     name?: string,
     description?:string,
-    hourValue?:string,
+    hourValue?:number,
     status?:string
 }
 

@@ -4,6 +4,7 @@ import { listProjectsService } from "../../services/projects/list.projects.servi
 import { getOneProjectService } from "../../services/projects/getOne.projects.services"
 import { listTotalOneProjectsService } from "../../services/projects/list.totalOneProject.services"
 import { getTotalAllProjectsService } from "../../services/projects/getTotalAll.projects.services"
+import { updateProjectsService } from "../../services/projects/update.projects.services"
 
 
 
@@ -30,4 +31,9 @@ export const getOneProjectController = async (request:Request, response:Response
 export const getTotalAllProjectsController = async (request:Request, response:Response)=>{
     const [status,json] = await getTotalAllProjectsService()
     return response.status(status as number).json(json)
+}
+
+export const updateProjectsController = async (request:Request, response:Response)=>{
+    const [status] = await updateProjectsService(request.body,request.params.id)
+    return response.status(status as number).json({message: "projeto atualizado com sucesso"})
 }
