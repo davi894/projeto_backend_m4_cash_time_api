@@ -9,9 +9,7 @@ const finishCheckpointService = async (projectId: string, userId: string): Promi
     const projects = AppDataSource.getRepository(Projects)
     const users = AppDataSource.getRepository(User)
 
-    const finishCheckpoint = await checkpoints.findOneBy{
-        id: projectId
-    }
+    const { }
 }
 
 export default finishCheckpointService    

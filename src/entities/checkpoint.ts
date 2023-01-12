@@ -2,12 +2,8 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    CreateDateColumn,
-    BeforeInsert,
-    OneToOne,
     ManyToOne,
-    OneToMany
-} from "typeorm"
+} from "typeorm";
 
 import { User } from "./user";
 import { Projects } from "./projects";
@@ -18,13 +14,13 @@ export class Checkpoint {
     id: string
 
     @Column("time")
-    entry: string
+    entry: Date
 
     @Column("time")
     output: Date
 
     @Column()
-    day: Date
+    date: Date
 
     @ManyToOne(() => User,(u) => u.id )
     user_: User
