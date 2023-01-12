@@ -1,4 +1,6 @@
 import { ICheckpointPost } from "../../interfaces/checkpoint";
+import handlerError from "../../errors/handleError";
+import AppError from "../../errors/AppError";
 import { AppDataSource } from "../../data-source";
 import { Checkpoint } from "../../entities/checkpoint";
 import { Projects } from "../../entities/projects";
@@ -11,35 +13,24 @@ const servicePostCheckpoint = async (data: ICheckpointPost) => {
   const projectsRepository = AppDataSource.getRepository(Projects);
   const userRepository = AppDataSource.getRepository(User);
 
-  const foundUserProjects = await userRepository
-    .createQueryBuilder("users")
-    .leftJoinAndSelect("users.projects_id", "projects")
-    .where("projects.id = :id", { id: project_id })
-    .andWhere("users.id = :id", { id: user_id })
+  const foundProjects = await projectsRepository
+    .createQueryBuilder("projects")
+    .innerJoinAndSelect("projects.user_id", "user")
+    .where("user.id = :id", { id: user_id })
+    .andWhere("projects.id = :id", { id: project_id })
     .getOne();
 
-  return {
-    user: {
-      name: "",
-      email: "",
-      isActive: "",
-      porject: {
-        id: "",
-        name: "",
-        updatedAt: "",
-        hourValue: "",
-        status: "",
-        totalValue: "",
-        totalTime: "",
-        checkpoints: {
-          id: "",
-          entry: "",
-          output: "",
-          day: "",
-        },
-      },
-    },
-  };
+  if (!foundProjects) {
+    throw new AppError(404, "Project not exist!");
+  }
+
+  const creatCheckpoint = checkpointRepository.create({
+    
+  });
+
+  await checkpointRepository.save(creatCheckpoint);
+
+  return { message: "Checkpoint created!" };
 };
 
 export { servicePostCheckpoint };
