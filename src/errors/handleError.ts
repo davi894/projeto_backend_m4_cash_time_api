@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { AppError } from "./AppError";
+import AppError from "./AppError";
 
 const handleError = (
   err: Error,
@@ -14,4 +14,4 @@ const handleError = (
   return res.status(500).send({ message: err.message });
 };
 
-export { handleError };
+export default handleError;
