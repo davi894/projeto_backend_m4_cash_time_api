@@ -10,7 +10,7 @@ const getPeriodService = async (periodData: ICheckpointPost) => {
     const projects = AppDataSource.getRepository(Projects)
     const users = AppDataSource.getRepository(User)
 
-    const { project_id, user_id, entry, output, day} = periodData
+    const { project_id, user_id, entry, output, date} = periodData
 
     const foundPeriod = await checkpoints
     .createQueryBuilder("checkpoint")

@@ -1,14 +1,31 @@
-import express from "express"
-import { Router } from "express"
-import finishCheckpointController from "../../controllers/checkpoint/finishCheckpoint.controller"
-import getPeriodController from "../../controllers/checkpoint/getPeriod.controller"
+import express from "express";
+import { Router } from "express";
+import controllerGetIdCheckpoint from "../../controllers/checkpoint/controllerGetIdCheckpoint";
+import controllerPostCheckpoint from "../../controllers/checkpoint/controllerPostCheckpoint";
+import {
+  midValidateProjectId,
+  midValidateCheckpointId,
+} from "../../middlewares/checkpoint";
+import getPeriodController from "../../controllers/checkpoint/getPeriod.controller";
+import finishCheckpointController from "../../controllers/checkpoint/finishCheckpoint.controller";
 
-const routerCheckpoint = Router()
+const routerCheckpoint = Router();
 
-routerCheckpoint.get("/checkpoint", getPeriodController)
-routerCheckpoint.patch("/checkpoint/:project_id", finishCheckpointController)
-routerCheckpoint.post("/checkpoint/:project_id",)
-routerCheckpoint.get("/checkpoint/:id")
+routerCheckpoint.post(
+  "/checkpoint/:project_id",
+  midValidateProjectId,
+  controllerPostCheckpoint
+);
 
-export default routerCheckpoint
+routerCheckpoint.get(
+  "/checkpoint/:project_id",
+  midValidateProjectId,
+  midValidateCheckpointId,
+  controllerGetIdCheckpoint
+);
 
+routerCheckpoint.get("/checkpoint", getPeriodController);
+
+routerCheckpoint.patch("/checkpoint/:project_id", finishCheckpointController);
+
+export default routerCheckpoint;

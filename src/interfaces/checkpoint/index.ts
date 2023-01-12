@@ -2,8 +2,8 @@ interface ICheckpointPost {
   project_id: string;
   user_id: string;
   entry: string;
-  output: string;
-  day: string;
+  output?: string;
+  date: string;
 }
 
 interface ICheckpointGEtId {
