@@ -39,7 +39,7 @@ export class Projects {
   totalValue: number;
 
   @Column()
-  totalTime: string;
+  totalTime: number;
 
   @OneToMany(() => Checkpoint, (c) => c.id)
   checkpoint_: Checkpoint[];
