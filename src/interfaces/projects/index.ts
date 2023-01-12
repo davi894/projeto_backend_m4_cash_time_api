@@ -1,15 +1,15 @@
 interface IProjectsRequest{
     name:string,
     description?:string,
-    hour_value: number,
+    hourValue: number,
     status: string,
-    total_value: number
+    totalValue: number
 }
 
 interface IProjectsUpdate{
     name?: string,
     description?:string,
-    hour_value?:string,
+    hourValue?:string,
     status?:string
 }
 
