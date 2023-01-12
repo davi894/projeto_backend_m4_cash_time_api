@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import "express-async-errors";
 import express from "express";
-import { handleError } from "./errors/handleError";
+import handleError from "./errors/handleError";
 import checkpointRoute from "./routes/checkpoint/checkpoint.routes";
 
 const app = express();

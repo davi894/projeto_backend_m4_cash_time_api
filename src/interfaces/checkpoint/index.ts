@@ -6,9 +6,10 @@ interface ICheckpointPost {
   day: string;
 }
 
-interface ICheckpointGEtId{
+interface ICheckpointGEtId {
   project_id: string;
   user_id: string;
+  checkpoint_id: string;
 }
 
-export { ICheckpointPost,ICheckpointGEtId };
+export { ICheckpointPost, ICheckpointGEtId };
