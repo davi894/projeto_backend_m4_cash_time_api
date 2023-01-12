@@ -3,7 +3,8 @@ interface IProjectsRequest{
     description?:string,
     hourValue: number,
     status: string,
-    totalValue: number
+    totalValue: number,
+    totalTime: string
 }
 
 interface IProjectsUpdate{
