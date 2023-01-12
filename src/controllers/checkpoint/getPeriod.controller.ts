@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import getPeriodService from "../../service/checkpoint/getperiod.service"
+import getPeriodService from "../../service/checkpoint/getPeriod.service"
 
 const getPeriodController = async (req: Request, res: Response) => {
 

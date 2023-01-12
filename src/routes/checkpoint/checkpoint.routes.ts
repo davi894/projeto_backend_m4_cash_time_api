@@ -1,11 +1,14 @@
+import express from "express"
 import { Router } from "express"
-import finishCheckpointController from "../../controller/checkpoint/finishCheckpoint.controller"
-import getPeriodController from "../../controller/checkpoint/getPeriod.controller"
+import finishCheckpointController from "../../controllers/checkpoint/finishCheckpoint.controller"
+import getPeriodController from "../../controllers/checkpoint/getPeriod.controller"
 
-const checkpointRoute = Router()
+const routerCheckpoint = Router()
 
-checkpointRoute.get("/checkpoint", getPeriodController)
-checkpointRoute.patch("/checkpoint/:project_id", finishCheckpointController)
+routerCheckpoint.get("/checkpoint", getPeriodController)
+routerCheckpoint.patch("/checkpoint/:project_id", finishCheckpointController)
+routerCheckpoint.post("/checkpoint/:project_id",)
+routerCheckpoint.get("/checkpoint/:id")
 
+export default routerCheckpoint
 
-export default checkpointRoute
