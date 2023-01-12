@@ -18,7 +18,7 @@ export const listProjectsController = async (request:Request, response:Response)
 }
 
 export const listTotalOneProjectController = async (request:Request, response:Response)=>{
-    const [status,json] = await listTotalOneProjectsService()
+    const [status,json] = await listTotalOneProjectsService(request.params)
     return response.status(status as number).json(json)
 }
 

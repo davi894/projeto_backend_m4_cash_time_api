@@ -10,6 +10,6 @@ projectsRouter.get("/",listProjectsController)
 
 projectsRouter.get("/:project_id/total",listTotalOneProjectController)
 
-projectsRouter.get("/:project_id/total")
+
 projectsRouter.get("/:id",getOneProjectController)
 
