@@ -37,7 +37,7 @@ export class Projects {
   @Column("float")
   totalValue: number;
 
-  @Column("time")
+  @Column()
   totalTime: string;
 
   @OneToMany(() => Checkpoint, (c) => c.id)
