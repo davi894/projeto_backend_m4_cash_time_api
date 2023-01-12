@@ -7,7 +7,7 @@ export const getOneProjectService = async (params) => {
     const project = await projectsDatabase.findOneBy({
         id: params.id
     })
-    console.log(project)
+    
     if(!project) {
         throw new AppError(404, "Project not found!")
     }

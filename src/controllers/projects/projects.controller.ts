@@ -2,6 +2,7 @@ import { createProjectsService } from "../../services/projects/create.projects.s
 import { Request,Response } from "express"
 import { listProjectsService } from "../../services/projects/list.projects.services"
 import { getOneProjectService } from "../../services/projects/getOne.projects.services"
+import { getTotalAllProjectsService } from "../../services/projects/getTotalAll.projects.services"
 
 
 export const createProjectsController = async (request:Request, response:Response)=>{
@@ -16,5 +17,10 @@ export const listProjectsController = async (request:Request, response:Response)
 
 export const getOneProjectController = async (request:Request, response:Response)=>{
     const [status,json] = await getOneProjectService(request.params)
+    return response.status(status as number).json(json)
+}
+
+export const getTotalAllProjectsController = async (request:Request, response:Response)=>{
+    const [status,json] = await getTotalAllProjectsService()
     return response.status(status as number).json(json)
 }
