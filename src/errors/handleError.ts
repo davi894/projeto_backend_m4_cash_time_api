@@ -8,10 +8,10 @@ const handleError = (
   next: NextFunction
 ) => {
   if (err instanceof AppError) {
-    return res.status(err.statusCode).json({ message: err.message });
+    return res.status(err.statusCode).send({ message: err.message });
   }
 
-  return res.status(500).json({ message: err.message });
+  return res.status(500).send({ message: err.message });
 };
 
 export default handleError;
