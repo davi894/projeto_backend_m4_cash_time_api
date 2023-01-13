@@ -6,22 +6,30 @@ import { User } from "../../entities/user"
 import { ICheckpointPost } from "../../interfaces/checkpoint"
 
 const getPeriodService = async (periodData: ICheckpointPost) => {
-    const checkpoints = AppDataSource.getRepository(Checkpoint)
-    const projects = AppDataSource.getRepository(Projects)
-    const users = AppDataSource.getRepository(User)
+  const checkpoints = AppDataSource.getRepository(Checkpoint)
+  const projects = AppDataSource.getRepository(Projects)
+  const users = AppDataSource.getRepository(User)
 
-    const { project_id, user_id, entry, output, date} = periodData
+  const { project_id, user_id, entry, output, date} = periodData
 
-    const foundPeriod = await checkpoints
-    .createQueryBuilder("checkpoint")
-    .leftJoinAndSelect("checkpoint.projects_id", "projects")
-    .where("projects.id = :id", { id: project_id })
-    .andWhere("checkpoint.user_id  = :id",{ id: user_id })
-    .getOne();
+  const getPeriod = await checkpoints.findOne({
+    where: {
+      entry: entry,
+      output: output
+    }
+  })
 
-  if (!foundPeriod) {
+  const getDay = new Date(date).getDay()
+  
+
+  if (!getPeriod) {
     throw new AppError(404, "Period not found!");
   }
+
+  const selectedPeriod = getPeriod.split(":")
+  const period = parseInt(selectedPeriod[2])
+  const 
+  
 
   return;
 }

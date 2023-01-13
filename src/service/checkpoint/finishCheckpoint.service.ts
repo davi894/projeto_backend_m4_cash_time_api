@@ -8,9 +8,25 @@ import { ICheckpointPost } from "../../interfaces/checkpoint"
 const finishCheckpointService = async (checkpointData: ICheckpointPost) => {
     const checkpoints = AppDataSource.getRepository(Checkpoint)
     const projects = AppDataSource.getRepository(Projects)
-    const users = AppDataSource.getRepository(User)
 
-    const { date,entry,project_id,user_id,} = checkpointData
+    const { date, entry, output, project_id, user_id,} = checkpointData
+
+    const finishPeriod = await checkpoints
+    .createQueryBuilder("checkpoint")
+    .leftJoinAndSelect("checkpoint.projects_id", "projects")
+    .where("projects.id = :id", { id: project_id })
+    .andWhere("checkpoint.output  = :output",{ output: output })
+    .getOne();
+
+    const period = checkpoints.create({
+        ...finishPeriod,
+        ...checkpointData
+    })
+
+    await checkpoints.save({...finishPeriod})
+
+    return period
+
 }
 
 export default finishCheckpointService    
