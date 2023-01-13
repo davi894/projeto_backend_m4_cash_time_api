@@ -19,7 +19,8 @@ export class Projects {
   @Column()
   name: string;
 
-  @Column({ nullable: true })
+  @Column({nullable:true})
+
   description: string;
 
   @CreateDateColumn()
