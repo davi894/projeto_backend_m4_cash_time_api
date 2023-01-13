@@ -5,52 +5,38 @@
 ## TECHS E BIBLIOTECAS
 | TECHS | BIBLIOTECAS |
 |:-------:|:-------------:|
-|         |               |
+|   Typescript  |bcryptjs            |
+|    NodeJS     |jsonwebtoken        |
+|    Shell      |jest                |
+|               |uuid-validate       |
+|               |express-async-errors|
+|               |reflect-metadata    |
+|               |typeorm             |
+|               |yup                 |
 
-## POST
-
+## ROTA USER
+>**Cadastro/registro de usuário**
 ```
-POST - /user
+POST - /user 
 {
 
 }
-
 ```
+>**Dados do usuario**
 ```
-POST -  /project
+GET - /user 
 {
- 
+
 }
 ```
-
-
+>**Atualização de usuário**
 ```
-POST - /checkpoint/:project_id
-{
- 
-}
-```
----
-## GET
-
-
-```
-GET 
+PATCH - /user/:user_id 
 {
  
 }
 ```
----
-## DELETE
-
-
-```
-DELETE - /project/:project_id
-{
- 
-}
-```
-
+>**deleção de usuário pelo soft delete**
 ```
 DELETE - /user/:user_id
 {
@@ -58,23 +44,86 @@ DELETE - /user/:user_id
 }
 ```
 ---
-## PACTH
-
-
+>**Login do usuário**
+## ROTA SESSION
 ```
- rota user - /user/:user_id
+POST - /login 
 {
  
 }
 ```
-
->checkpoint
+---
+## ROTA PROJECT
+>**Cadastro/registro do projeto**
 ```
- rota checkpoint - /checkpoint/:project_id 
+POST - /project  
 {
  
 }
 ```
-
-
+>**Listagem de todos os projetos**
+```
+GET - /project 
+{
+ 
+}
+```
+>**Listagem de um projeto em específico**
+```
+GET - /project/:project_id  
+{
+ 
+}
+```
+>**Atualização de um projeto em específico**
+```
+PATCH - /project/:project_id  
+{
+ 
+}
+```
+>**Deleção de um projeto em específico**
+```
+DELETE - /project/:project_id  
+{
+ 
+}
+```
+>**Total de um projeto**
+```
+GET - /poject/:project_id/total  
+{
+ 
+}
+```
+>**Total de todos os projetos**
+```
+GET - /project/total   
+{
+ 
+}
+```
+---
+## ROTA CHECKPOINT
+>**Ponto de registro do início e de fim da jornada de trabalho**
+```
+POST - /checkpoint/:project_id 
+{
+ 
+}
+```
+>**Listar todos os checkinpoints de um projeto em específico**
+```
+GET - /checkpoint/:project_id 
+{
+ 
+}
+```
+>**Atualização do checkinpoint de um projeto em específico**
+```
+PATCH - /checkpoint/:project_id
+{
+ 
+}
+```
 
