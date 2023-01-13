@@ -6,6 +6,8 @@ import {
   midValidateProjectId,
   midValidateCheckpointId,
 } from "../../middlewares/checkpoint";
+import getPeriodController from "../../controllers/checkpoint/getPeriod.controller";
+import finishCheckpointController from "../../controllers/checkpoint/finishCheckpoint.controller";
 
 const routerCheckpoint = Router();
 
@@ -21,5 +23,9 @@ routerCheckpoint.get(
   midValidateCheckpointId,
   controllerGetIdCheckpoint
 );
+
+routerCheckpoint.get("/checkpoint", getPeriodController);
+
+routerCheckpoint.patch("/checkpoint/:project_id", finishCheckpointController);
 
 export default routerCheckpoint;

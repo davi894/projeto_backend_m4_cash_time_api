@@ -1,6 +1,5 @@
-import express from "express";
-import "express-async-errors";
 import "reflect-metadata";
+import express from "express"
 import routerCheckpoint from "./routes/checkpoint/checkpoint.routes";
 import handleError from "./errors/handleError";
 

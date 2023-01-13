@@ -1,7 +1,11 @@
 import request from "supertest";
 import { DataSource } from "typeorm";
 import app from "../../../app";
+<<<<<<< HEAD
 import {AppDataSource} from "../../../data-source";
+=======
+import { AppDataSource } from "../../../data-source";
+>>>>>>> 7677174c9bb0a84f565a5c256e0515ffb3db18c3
 import { mockedUser, mockedUserLogin } from "../../mocks";
 
 describe("/login", () => {

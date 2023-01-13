@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { servicePostCheckpoint } from "../../service/checkpoint/servicePostCheckpoint";
+import { servicePostCheckpoint } from "../../service/checkpoint/postCheckpoint.service";
 import {serializerReqCheckinPost} from "../../serializers/checkpoint"
 
 const postCheckin = {
