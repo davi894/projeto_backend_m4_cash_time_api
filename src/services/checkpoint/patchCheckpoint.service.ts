@@ -10,7 +10,6 @@ const patchCheckpointService = async ({
   output,
   project_id,
 }: any) => {
-
   const projects = await AppDataSource.getRepository(Projects).findOne({
     where: {
       id: project_id,
@@ -23,8 +22,8 @@ const patchCheckpointService = async ({
     },
   });
   const entry = checkpoints.entry.split(":");
- /*  const hourNumber = parseInt(entry[0]);
-  const hourNumber = parseInt(entry[2]); */
+  const hour = parseInt(entry[0]);
+  const minutes = parseInt(entry[2]);
 
   if (checkpoints.output) {
     function calculateDifference(time1, time2) {
@@ -38,10 +37,8 @@ const patchCheckpointService = async ({
       let minutes = difference % 60;
       return { hours: hours, minutes: minutes };
     }
-    console.log()
+    console.log();
   }
-
- 
 
   const users = AppDataSource.getRepository(User);
 };
