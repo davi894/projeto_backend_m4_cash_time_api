@@ -4,14 +4,14 @@ import {
   deleteUserController,
   listUsersController,
   updateUserController,
-} from "../controllers/users.controllers";
-import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
-import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
-import ensureEmailNotUsedMiddleware from "../middlewares/ensureEmailNotUsed.middleware";
+} from "../../controllers/users/users.controllers";
+import ensureAuthMiddleware from "../../middlewares/ensureAuth.middleware";
+import ensureDataIsValidMiddleware from "../../middlewares/ensureDataIsValid.middleware";
+import ensureEmailNotUsedMiddleware from "../../middlewares/ensureEmailNotUsed.middleware";
 import {
   createUserSerializer,
   userUpdateSerializer,
-} from "../serializers/users.serializers";
+} from "../../serializers/users/users.serializers";
 
 const usersRoutes = Router();
 
