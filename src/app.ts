@@ -4,8 +4,9 @@ import "reflect-metadata";
 import { projectsRouter } from "./routes/projects/projects.routes";
 import routerCheckpoint from "./routes/checkpoint/checkpoint.routes";
 import  handleError  from "./errors/handleError";
-import sessionRoutes from "./routers/session.routes";
-import usersRoutes from "./routers/users.routes";
+import usersRoutes from "./routes/users/users.routes";
+import sessionRoutes from "./routes/session/session.routes";
+
 
 const app = express();
 
