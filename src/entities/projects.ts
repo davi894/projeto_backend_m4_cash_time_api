@@ -11,7 +11,6 @@ import {
 import { User } from "./user";
 import { Checkpoint } from "./checkpoint";
 
-
 @Entity("projects")
 export class Projects {
   @PrimaryGeneratedColumn("uuid")
@@ -20,7 +19,8 @@ export class Projects {
   @Column()
   name: string;
 
-  @Column({ nullable: true })
+  @Column({nullable:true})
+
   description: string;
 
   @CreateDateColumn()
@@ -29,17 +29,17 @@ export class Projects {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column("float")
+  @Column({type:"float"})
   hourValue: number;
 
   @Column()
   status: string;
 
-  @Column("float")
+  @Column({type:"float"})
   totalValue: number;
 
-  @Column("time")
-  totalTime: Date;
+  @Column()
+  totalTime: string;
 
   @OneToMany(() => Checkpoint, (c) => c.id)
   checkpoint_: Checkpoint[];
