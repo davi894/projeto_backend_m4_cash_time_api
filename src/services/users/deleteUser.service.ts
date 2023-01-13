@@ -2,7 +2,8 @@ import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user";
 import  AppError  from "../../errors/AppError";
 import { IUser } from "../../interfaces/users";
-import { userSerializer } from "../../serializers/users.serializers";
+import { userSerializer } from "../../serializers/users/users.serializers";
+
 
 const deleteUserService = async (userId: string): Promise<IUser> => {
   const userRepository = AppDataSource.getRepository(User);

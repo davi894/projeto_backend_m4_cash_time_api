@@ -9,11 +9,12 @@ export const verifyErrorMiddleware =(serializer:yup.BaseSchema)=> async (req:Req
         stripUnknown: true,
         abortEarly: false,
     })
+   
         return next()
 
     }catch (error){
         throw new AppError(400,error.errors)
 
     }
- 
+    
 }

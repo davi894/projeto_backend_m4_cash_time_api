@@ -9,7 +9,7 @@ export const listTotalOneProjectsService = async (params)=>{
         id:params.project_id
     })
   
-    const total = projects.hourValue * projects.totalTime
+    const total = projects.hourValue * parseInt[projects.totalTime]
     return [200,total]    
     
     
