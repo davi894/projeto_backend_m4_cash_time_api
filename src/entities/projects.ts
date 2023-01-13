@@ -19,7 +19,8 @@ export class Projects {
   @Column()
   name: string;
 
-  @Column({ nullable: true })
+  @Column({nullable:true})
+
   description: string;
 
   @CreateDateColumn()
@@ -28,13 +29,13 @@ export class Projects {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column("float")
+  @Column({type:"float"})
   hourValue: number;
 
   @Column()
   status: string;
 
-  @Column("float")
+  @Column({type:"float"})
   totalValue: number;
 
   @Column()

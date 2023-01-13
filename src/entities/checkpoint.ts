@@ -13,14 +13,14 @@ export class Checkpoint {
     @PrimaryGeneratedColumn("uuid")
     id: string
 
-    @Column("time")
-    entry: Date
+    @Column({type:"time"})
+    entry: string
 
-    @Column("time")
-    output: Date
+    @Column({type:"time"})
+    output: string
 
-    @Column()
-    date: Date
+    @Column({type:"date"})
+    date: string
 
     @ManyToOne(() => User,(u) => u.id )
     user_: User
