@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import createUserService from "../services/users/createUser.service";
-import deleteUserService from "../services/users/deleteUser.service";
-import listUserService from "../services/users/listUser.service";
-import updateUserService from "../services/users/updateUser.service";
+import createUserService from "../../services/users/createUser.service";
+import deleteUserService from "../../services/users/deleteUser.service";
+import listUserService from "../../services/users/listUser.service";
+import updateUserService from "../../services/users/updateUser.service";
 
 const createUserController = async (req: Request, res: Response) => {
   const userData = req.body;

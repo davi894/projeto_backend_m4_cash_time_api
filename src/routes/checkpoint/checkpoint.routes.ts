@@ -1,13 +1,9 @@
-import express from "express";
 import { Router } from "express";
-import controllerGetIdCheckpoint from "../../controllers/checkpoint/controllerGetIdCheckpoint";
-import controllerPostCheckpoint from "../../controllers/checkpoint/controllerPostCheckpoint";
 import {
   midValidateProjectId,
   midValidateCheckpointId,
 } from "../../middlewares/checkpoint";
-import getPeriodController from "../../controllers/checkpoint/getPeriod.controller";
-import patchCheckpointController from "../../controllers/checkpoint/patchCheckpoint.controller";
+import { controllerPostCheckpoint, controllerGetIdCheckpoint, getPeriodController, patchCheckpointController } from "../../controllers/checkpoint/checkpoint.controller";
 
 const routerCheckpoint = Router();
 
