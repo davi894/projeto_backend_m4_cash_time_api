@@ -12,4 +12,11 @@ interface ICheckpointGEtId {
   checkpoint_id: string;
 }
 
-export { ICheckpointPost, ICheckpointGEtId };
+interface ICheckPointInterval {
+  initialRange: string;
+  finalInterval: string;
+  project_id: string;
+  user_id: string;
+}
+
+export { ICheckpointPost, ICheckpointGEtId, ICheckPointInterval };

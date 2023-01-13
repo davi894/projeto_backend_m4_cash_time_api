@@ -5,8 +5,8 @@ import {serializerReqCheckinPost} from "../../serializers/checkpoint"
 const postCheckin = {
   project_id: "122",
   user_id: "sss",
-  entry: "10",
-  output: "11",
+  entry: "10:00",
+  output: "11:00",
   date: "2000/12/10",
 };
 

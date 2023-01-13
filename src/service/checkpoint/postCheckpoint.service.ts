@@ -9,21 +9,21 @@ const servicePostCheckpoint = async (data: ICheckpointPost) => {
   const { project_id, user_id, entry, output, date } = data;
 
   const checkpointRepository = AppDataSource.getRepository(Checkpoint);
-  const projectsRepository = AppDataSource.getRepository(Projects);
-  const userRepository = AppDataSource.getRepository(User);
+  const projects = await AppDataSource.getRepository(Projects).findOne({
+    where: { id: project_id },
+  });
+  const user = await AppDataSource.getRepository(User).findOne({
+    where: { id: user_id },
+  });
 
-   /*  const foundProjects = await projectsRepository
-    .createQueryBuilder("projects")
-    .innerJoinAndSelect("projects.user_id", "user")
-    .where("user.id = :id", { id: user_id })
-    .andWhere("projects.id = :id", { id: project_id })
-    .getOne(); 
- */
-  
+  const creatCheckpoint = checkpointRepository.create({
+    projects_: projects,
+    user_: user,
+    date: date,
+    entry: entry,
+  });
 
- /*  const creatCheckpoint = checkpointRepository.create({});
-
-  await checkpointRepository.save(creatCheckpoint);  */
+  await checkpointRepository.save(creatCheckpoint);
 
   return { message: "Checkpoint created!" };
 };

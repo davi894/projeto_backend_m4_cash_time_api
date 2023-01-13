@@ -28,13 +28,13 @@ export class Projects {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column("float")
+  @Column({type:"float"})
   hourValue: number;
 
   @Column()
   status: string;
 
-  @Column("float")
+  @Column({type:"float"})
   totalValue: number;
 
   @Column()
