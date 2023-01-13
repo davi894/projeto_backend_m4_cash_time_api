@@ -10,7 +10,7 @@ import { deleteProjectsService } from "../../services/projects/delete.projects.s
 
 
 export const createProjectsController = async (request:Request, response:Response)=>{
-    const [status,json] = await createProjectsService(request.body)
+    const [status,json] = await createProjectsService(request)
     return response.status(status as number).json(json)
 }
 

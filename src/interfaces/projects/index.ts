@@ -1,3 +1,5 @@
+import { User } from "../../entities/user"
+
 interface IProjectsRequest{
     name:string,
     description?:string,
@@ -5,6 +7,7 @@ interface IProjectsRequest{
     status: string,
     totalValue: number,
     totalTime: string,
+    
 
 }
 
