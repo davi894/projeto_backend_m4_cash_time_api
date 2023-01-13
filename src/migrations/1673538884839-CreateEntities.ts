@@ -1,5 +1,6 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
+
 export class CreateEntities1673538884839 implements MigrationInterface {
     name = 'CreateEntities1673538884839'
 
@@ -20,5 +21,4 @@ export class CreateEntities1673538884839 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE "users"`);
         await queryRunner.query(`DROP TABLE "projects"`);
     }
-
 }
