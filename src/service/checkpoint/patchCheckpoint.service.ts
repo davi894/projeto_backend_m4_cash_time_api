@@ -27,8 +27,21 @@ const patchCheckpointService = async ({
   const hourNumber = parseInt(entry[2]); */
 
   if (checkpoints.output) {
-    
+    function calculateDifference(time1, time2) {
+      // convert times to minutes
+      let minutes1 = time1.hours * 60 + time1.minutes;
+      let minutes2 = time2.hours * 60 + time2.minutes;
+      // calculate difference in minutes
+      let difference = Math.abs(minutes2 - minutes1);
+      // convert minutes back to hours and minutes
+      let hours = Math.floor(difference / 60);
+      let minutes = difference % 60;
+      return { hours: hours, minutes: minutes };
+    }
+    console.log()
   }
+
+ 
 
   const users = AppDataSource.getRepository(User);
 };
