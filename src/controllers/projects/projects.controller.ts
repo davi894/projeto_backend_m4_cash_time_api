@@ -10,36 +10,36 @@ import { deleteProjectsService } from "../../services/projects/delete.projects.s
 
 
 export const createProjectsController = async (request:Request, response:Response)=>{
-    const [status,json] = await createProjectsService(request.body)
-    return response.status(status as number).json(json)
+    const json = await createProjectsService(request.body)
+    return response.status(201).json(json)
 }
 
 export const listProjectsController = async (request:Request, response:Response)=>{
-    const [status,json] = await listProjectsService()
-    return response.status(status as number).json(json)
+    const json = await listProjectsService()
+    return response.status(200).json(json)
 }
 
 export const listTotalOneProjectController = async (request:Request, response:Response)=>{
-    const [status,json] = await listTotalOneProjectsService(request.params)
-    return response.status(status as number).json(json)
+    const json = await listTotalOneProjectsService(request.params)
+    return response.status(200).json(json)
 }
 
 export const getOneProjectController = async (request:Request, response:Response)=>{
-    const [status,json] = await getOneProjectService(request.params)
-    return response.status(status as number).json(json)
+    const json = await getOneProjectService(request.params)
+    return response.status(200).json(json)
 }
 
 export const getTotalAllProjectsController = async (request:Request, response:Response)=>{
-    const [status,json] = await getTotalAllProjectsService()
-    return response.status(status as number).json(json)
+    const json = await getTotalAllProjectsService()
+    return response.status(200).json(json)
 }
 
 export const updateProjectsController = async (request:Request, response:Response)=>{
-    const [status] = await updateProjectsService(request.body,request.params.id)
-    return response.status(status as number).json({message: "projeto atualizado com sucesso"})
+    const json = await updateProjectsService(request.body,request.params.id)
+    return response.status(200).json(json)
 }
 
 export const deleteProjectsController = async (request:Request, response:Response)=>{
-    const[status,json] = await deleteProjectsService(request.params)
-    return response.status(status as number).json(json)
+    const json = await deleteProjectsService(request.params)
+    return response.status(204).json(json)
 }

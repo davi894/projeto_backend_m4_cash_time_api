@@ -6,6 +6,7 @@ import { serializerReqCheckinGetId } from "../../serializers/checkpoint";
 import { ICheckPointInterval } from "../../interfaces/checkpoint";
 import getPeriodService from "../../services/checkpoint/getPeriod.service";
 import patchCheckpointService from "../../services/checkpoint/patchCheckpoint.service";
+import { ICheckinRequestUpdate } from "../../interfaces/checkpoint";
 
 const postCheckin = {
     project_id: "122",
@@ -54,7 +55,7 @@ export const controllerGetIdCheckpoint = async (req: Request, res: Response) => 
 };
   
 export const getPeriodController = async (req: Request, res: Response) => {
-    const period = req.params;
+    const period = req.body;
   
     const listUsers = await getPeriodService(reqBody);
   
@@ -62,7 +63,13 @@ export const getPeriodController = async (req: Request, res: Response) => {
 };
   
 export const patchCheckpointController = async (req: Request, res: Response) => {
-    const finishCheckpoint = await patchCheckpointService(reqBody2);
+    const patchData: ICheckinRequestUpdate = {
+        checkpoint_id: req.body.checkpoint_id,
+        output: req.body.output,
+        project_id: req.params.id,
+      }
+
+    const finishCheckpoint = await patchCheckpointService(patchData);
   
     return res.status(200).json(finishCheckpoint);
 };

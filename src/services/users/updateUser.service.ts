@@ -3,7 +3,6 @@ import { User } from "../../entities/user";
 import { IUser, IUserUpdate } from "../../interfaces/users";
 import { userSerializer } from "../../serializers/users/users.serializers";
 
-
 const updateUserService = async (
   userData: IUserUpdate,
   userId: string

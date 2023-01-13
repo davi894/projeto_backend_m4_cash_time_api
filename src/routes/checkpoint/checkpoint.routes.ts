@@ -20,8 +20,8 @@ routerCheckpoint.get(
   controllerGetIdCheckpoint
 );
 
-routerCheckpoint.get("/checkpoint", getPeriodController);
+routerCheckpoint.get("", getPeriodController);
 
-routerCheckpoint.patch("/checkpoint/:project_id", patchCheckpointController);
+routerCheckpoint.patch("/:project_id", patchCheckpointController);
 
 export default routerCheckpoint;

@@ -11,9 +11,9 @@ export const createProjectsService = async (projectsData: IProjectsRequest)=>{
         name:projectsData.name
     })
     if (findProjects){
-        throw new AppError(409,"Projects Alheady Exists")
+        throw new AppError(409,"Project Already Exists")
     }
     await projectsRepository.save(projects)
 
-    return [201,projects]
+    return projects
 }

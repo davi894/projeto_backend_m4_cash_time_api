@@ -5,5 +5,5 @@ import { Projects } from "../../entities/projects"
 export const listProjectsService = async ()=>{
     const projectsRepository = AppDataSource.getRepository(Projects)
     const projects = await projectsRepository.find()
-    return [200,projects]
+    return projects
 }

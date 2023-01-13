@@ -14,12 +14,12 @@ const midValidateProjectId = async (
   const projectsRepository = AppDataSource.getRepository(Projects);
   const userRepository = AppDataSource.getRepository(User);
 
-  const foundProjects = 1; /*await projectsRepository
-  .createQueryBuilder("projects")
-  .innerJoinAndSelect("projects.user_id", "user")
-  .where("user.id = :id", { id: user_id })
-  .andWhere("projects.id = :id", { id: project_id })
-  .getOne();  */
+  const foundProjects = await projectsRepository
+    .createQueryBuilder("projects")
+    .innerJoinAndSelect("projects.user_id", "user")
+    .where("user.id = :id", { id: req.body.user_id })
+    .andWhere("projects.id = :id", { id: req.body.project_id })
+    .getOne();
 
   if (!foundProjects) {
     throw new AppError(404, "Project not exist!");
@@ -37,13 +37,13 @@ const midValidateCheckpointId = async (
   const projectsRepository = AppDataSource.getRepository(Projects);
   const userRepository = AppDataSource.getRepository(User);
 
-  const foundProjects = 1; /* await checkpointRepository
-  .createQueryBuilder("checkpoint")
-  .leftJoinAndSelect("checkpoint.projects_id", "projects")
-  .where("projects.id = :id", { id: project_id })
-  .andWhere("checkpoint.id = :id", { id: checkpoint_id })
-  .andWhere("checkpoint.user_id  = :id", { id: user_id })
-  .getOne(); */
+  const foundProjects = await checkpointRepository
+    .createQueryBuilder("checkpoint")
+    .leftJoinAndSelect("checkpoint.projects_id", "projects")
+    .where("projects.id = :id", { id: req.body.project_id })
+    .andWhere("checkpoint.id = :id", { id: req.body.checkpoint_id })
+    .andWhere("checkpoint.user_id  = :id", { id: req.body.user_id })
+    .getOne();
 
   if (!foundProjects) {
     throw new AppError(404, "Checkpoint not exist!");
