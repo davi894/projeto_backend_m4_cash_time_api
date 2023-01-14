@@ -20,7 +20,6 @@ export class Projects {
   name: string;
 
   @Column({nullable:true})
-
   description: string;
 
   @CreateDateColumn()

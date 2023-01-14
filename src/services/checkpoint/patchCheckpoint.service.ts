@@ -3,43 +3,79 @@ import { AppDataSource } from "../../data-source";
 import { Checkpoint } from "../../entities/checkpoint";
 import { Projects } from "../../entities/projects";
 import { User } from "../../entities/user";
-import { ICheckpointPost } from "../../interfaces/checkpoint";
+import {
+  ICheckinRequestUpdate,
+  ICheckpointPost,
+} from "../../interfaces/checkpoint";
+import { calculateTime, splitHour } from "../../utils";
 
 const patchCheckpointService = async ({
   checkpoint_id,
   output,
   project_id,
-}: any) => {
+}: ICheckinRequestUpdate) => {
   const projects = await AppDataSource.getRepository(Projects).findOne({
     where: {
       id: project_id,
     },
   });
 
+  const users = AppDataSource.getRepository(User);
+  const checkpointRepository = AppDataSource.getRepository(Checkpoint);
+  const projectRepository = AppDataSource.getRepository(Projects);
+
   const checkpoints = await AppDataSource.getRepository(Checkpoint).findOne({
     where: {
       id: checkpoint_id,
     },
   });
-  const entry = checkpoints.entry.split(":");
-  const hour = parseInt(entry[0]);
-  const minutes = parseInt(entry[2]);
+
+  let timeProject = projects.totalTime;
 
   if (checkpoints.output) {
-    function calculateDifference(time1, time2) {
-      // convert times to minutes
-      let minutes1 = time1.hours * 60 + time1.minutes;
-      let minutes2 = time2.hours * 60 + time2.minutes;
-      // calculate difference in minutes
-      let difference = Math.abs(minutes2 - minutes1);
-      // convert minutes back to hours and minutes
-      let hours = Math.floor(difference / 60);
-      let minutes = difference % 60;
-      return { hours: hours, minutes: minutes };
-    }
+    const receivedDifference = calculateTime(
+      splitHour(checkpoints.entry),
+      splitHour(checkpoints.output),
+      "dif"
+    );
+
+    timeProject = calculateTime(
+      splitHour(timeProject),
+      splitHour(receivedDifference),
+      "dif"
+    );
   }
 
-  const users = AppDataSource.getRepository(User);
+  let outputSplited = splitHour(output);
+
+  if (outputSplited[0] < splitHour(checkpoints.entry)[0]) {
+    outputSplited[0] = outputSplited[0] + 24;
+    output = outputSplited.join(":");
+  }
+
+  const newTime = calculateTime(
+    splitHour(checkpoints.entry),
+    splitHour(output),
+    "dif"
+  );
+
+  timeProject = calculateTime(splitHour(timeProject), splitHour(newTime));
+
+  const updateCheckpoint = checkpointRepository.create({
+    ...checkpoints,
+    output: output,
+  });
+
+  await checkpointRepository.save(updateCheckpoint);
+
+  const updateProject = projectRepository.create({
+    ...projects,
+    totalTime: timeProject,
+  });
+
+  await projectRepository.save(updateProject);
+
+  return { message: "Checkpoint Updated" };
 };
 
 export default patchCheckpointService;

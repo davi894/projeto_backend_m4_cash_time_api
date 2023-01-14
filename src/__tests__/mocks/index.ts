@@ -1,5 +1,5 @@
 import { IProjectRequest } from "../../interfaces/project";
-import { IUserLogin, IUserRequest } from "../../interfaces/user";
+import { IUserLogin, IUserRequest } from "../../interfaces/users";
 import {
   ICheckinRequest,
   ICheckinRequestUpdate,
@@ -36,16 +36,16 @@ const mockedProject: IProjectRequest = {
 
 const mockedCheckpoint: ICheckinRequest = {
   entry: "8:20",
-  exit: "",
+  output: "",
   date: "2023/5/10",
   user_id: "",
   project_id: "",
 };
 
 const mockedCheckpointUpdate: ICheckinRequestUpdate = {
-  entry: "8:20",
-  exit: "",
-  date: "2023/5/10",
+  project_id: "",
+  output: "12:20",
+  checkpoint_id: "",
 };
 
 export {

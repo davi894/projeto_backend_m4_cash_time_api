@@ -5,6 +5,7 @@ interface IProjectsRequest{
     status: string,
     totalValue: number,
     totalTime: string
+
 }
 
 interface IProjectsUpdate{

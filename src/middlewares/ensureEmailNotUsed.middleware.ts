@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { AppDataSource } from "../data-source";
 import { User } from "../entities/user";
-import AppError  from "../errors/AppError";
+import AppError from "../errors/AppError";
 
 const ensureEmailNotUsedMiddleware = async (
   req: Request,

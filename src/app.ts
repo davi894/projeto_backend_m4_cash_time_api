@@ -3,7 +3,7 @@ import express from "express";
 import "reflect-metadata";
 import routerCheckpoint from "./routes/checkpoint/checkpoint.routes";
 import handleError from "./errors/handleError";
-import projectsRouter from "./routes/projects/projects.routes";
+import { projectsRouter } from "./routes/projects/projects.routes";
 import sessionRoutes from "./routes/session/session.routes";
 import usersRoutes from "./routes/users/users.routes";
 

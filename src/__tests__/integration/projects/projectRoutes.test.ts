@@ -45,8 +45,8 @@ describe("/project", () => {
     expect(response.body).toHaveProperty("status");
     expect(response.body).toHaveProperty("createdAt");
     expect(response.body).toHaveProperty("updatedAt");
-    expect(response.body).toHaveProperty("hour_value");
-    expect(response.body).toHaveProperty("total_value");
+    expect(response.body).toHaveProperty("hourValue");
+    expect(response.body).toHaveProperty("totalValue");
     expect(response.body.name).toEqual("Site de farmácia");
     expect(response.status).toBe(201);
   });
@@ -130,8 +130,8 @@ describe("/project", () => {
     expect(getProjectresponse.body).toHaveProperty("status");
     expect(getProjectresponse.body).toHaveProperty("createdAt");
     expect(getProjectresponse.body).toHaveProperty("updatedAt");
-    expect(getProjectresponse.body).toHaveProperty("hour_value");
-    expect(getProjectresponse.body).toHaveProperty("total_value");
+    expect(getProjectresponse.body).toHaveProperty("hourValue");
+    expect(getProjectresponse.body).toHaveProperty("totalValue");
     expect(getProjectresponse.body.name).toEqual("Site de farmácia");
     expect(getProjectresponse.status).toBe(200);
   });

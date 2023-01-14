@@ -11,5 +11,5 @@ export const getTotalAllProjectsService = async () => {
         }
     })
 
-    return [200, projects]
+    return projects
 }

@@ -81,7 +81,7 @@ describe("/project", () => {
     mockedCheckpoint.project_id = responseProject.body[0].id;
 
     const responseCheckpoint = await request(app)
-      .get("/checkpoint/:project_id")
+      .get( `/checkpoint/:${responseProject.body[0].id}`)
       .send(mockedCheckpoint);
 
     expect(responseCheckpoint.body).toHaveProperty("map");
@@ -119,8 +119,13 @@ describe("/project", () => {
       .post("/login")
       .send(mockedUserLogin);
 
+    const response = await request(app)
+      .post("/project")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedProject);
+
     await request(app)
-      .get("/project/:project_id")
+      .get(`/project/:${response.body[0].id}`)
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
       .send(mockedProject);
 

@@ -7,7 +7,7 @@ export const projectSchema = yup.object().shape({
     hourValue: yup.number().required(),
     status:yup.string().required(),
     totalValue : yup.number().required(),
-    totalTime : yup.number().required()
+    totalTime : yup.string().required()
 })
 
 export const updateProjectsSchema = yup.object().shape({
