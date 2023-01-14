@@ -15,7 +15,7 @@ const dataSourceConfig = (): DataSourceOptions => {
       url: process.env.DATABASE_URL,
       entities: [entitiesPath],
       migrations: [migrationsPath],
-      synchronize: true
+      synchronize: true,
     };
   }
 
@@ -29,7 +29,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     logging: false,
     entities: [entitiesPath],
     migrations: [migrationsPath],
-    synchronize: false
+    synchronize: false,
   };
 };
 

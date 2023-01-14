@@ -1,7 +1,7 @@
 import { compare } from "bcryptjs";
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user";
-import AppError  from "../../errors/AppError";
+import AppError from "../../errors/AppError";
 import jwt from "jsonwebtoken";
 import { IUserLogin } from "../../interfaces/users";
 

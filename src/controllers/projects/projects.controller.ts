@@ -1,11 +1,11 @@
-import { createProjectsService } from "../../services/projects/create.projects.services";
+import { createProjectsService } from "../../services/projects/createProjects.service";
 import { Request, Response } from "express";
-import { listProjectsService } from "../../services/projects/list.projects.services";
-import { getOneProjectService } from "../../services/projects/getOne.projects.services";
-import { listTotalOneProjectsService } from "../../services/projects/list.totalOneProject.services";
-import { getTotalAllProjectsService } from "../../services/projects/getTotalAll.projects.services";
-import { updateProjectsService } from "../../services/projects/update.projects.services";
-import { deleteProjectsService } from "../../services/projects/delete.projects.services";
+import { listProjectsService } from "../../services/projects/listProjects.service";
+import { getOneProjectService } from "../../services/projects/getOneProjects.service";
+import { listTotalOneProjectsService } from "../../services/projects/list.totalOneProject.service";
+import { getTotalAllProjectsService } from "../../services/projects/getTotalAllProjects.service";
+import { updateProjectsService } from "../../services/projects/updateProjects.service";
+import { deleteProjectsService } from "../../services/projects/deleteProjects.service";
 
 export const createProjectsController = async (
   request: Request,

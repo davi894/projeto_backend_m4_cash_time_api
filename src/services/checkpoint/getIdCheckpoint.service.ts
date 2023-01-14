@@ -12,18 +12,18 @@ const serviceGetIdCheckpoint = async (data: ICheckpointGEtId) => {
   const projectsRepository = AppDataSource.getRepository(Projects);
   const userRepository = AppDataSource.getRepository(User);
 
-  const foundcheckpoint =  await checkpointRepository
+  const foundcheckpoint = await checkpointRepository
     .createQueryBuilder("checkpoint")
     .leftJoinAndSelect("checkpoint.projects_id", "projects")
     .where("projects.id = :id", { id: project_id })
     .andWhere("checkpoint.id = :id", { id: checkpoint_id })
     .andWhere("checkpoint.user_id  = :id", { id: user_id })
-    .getOne(); 
+    .getOne();
 
-    if (!foundcheckpoint) {
+  if (!foundcheckpoint) {
     throw new AppError(404, "Checkpoint not exist!");
   }
- 
+
   return {
     checkpoint: [{ check1: "check1" }],
   };

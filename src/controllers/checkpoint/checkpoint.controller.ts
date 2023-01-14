@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { servicePostCheckpoint } from "../../services/checkpoint/postCheckpoint.service";
-import { serializerReqCheckinPost } from "../../serializers/checkpoint";
+import { serializerReqCheckinPost } from "../../serializers/checkpoint/checkpoint.serializers";
 import { serviceGetIdCheckpoint } from "../../services/checkpoint/getIdCheckpoint.service";
-import { serializerReqCheckinGetId } from "../../serializers/checkpoint";
+import { serializerReqCheckinGetId } from "../../serializers/checkpoint/checkpoint.serializers";
 import { ICheckPointInterval } from "../../interfaces/checkpoint";
 import getPeriodService from "../../services/checkpoint/getPeriod.service";
 import patchCheckpointService from "../../services/checkpoint/patchCheckpoint.service";

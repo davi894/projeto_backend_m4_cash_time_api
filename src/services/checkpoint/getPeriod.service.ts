@@ -1,4 +1,3 @@
-
 import { AppDataSource } from "../../data-source";
 import { Checkpoint } from "../../entities/checkpoint";
 import { ICheckPointInterval } from "../../interfaces/checkpoint";
