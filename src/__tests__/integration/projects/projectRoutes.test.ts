@@ -180,39 +180,4 @@ describe("/project", () => {
     expect(getProjectResponse.status).toBe(401);
   });
 
-  // test("GET /project/:project_id/checkpoint - should be able to list all checkpoints of a project", async () => {
-  //   const userLoginResponse = await request(app)
-  //     .post("/login")
-  //     .send(mockedUserLogin);
-
-  //   const createProjectResponse = await request(app)
-  //     .post("/project")
-  //     .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
-  //     .send(mockedProject);
-
-  //   const getCheckpointsResponse = await request(app)
-  //     .get(`/project/${createProjectResponse.body.id}/checkpoint`)
-  //     .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
-
-  //   expect(getCheckpointsResponse.body).toHaveLength(1);
-  //   expect(getCheckpointsResponse.body[0]).toHaveProperty("id");
-  //   expect(getCheckpointsResponse.body[0]).toHaveProperty("entrada");
-  //   expect(getCheckpointsResponse.body[0]).toHaveProperty("saida");
-  //   expect(getCheckpointsResponse.body[0]).toHaveProperty("day");
-  //   expect(getCheckpointsResponse.body[0]).toHaveProperty("userId");
-  //   expect(getCheckpointsResponse.status).toBe(200);
-  // });
-
-  // test("GET /project/:project_id/checkpoint - should not be able to list all checkpoints of a invalid project id", async () => {
-  //   const userLoginResponse = await request(app)
-  //     .post("/login")
-  //     .send(mockedUserLogin);
-
-  //   const getCheckpointsResponse = await request(app)
-  //     .get(`/project/0f8d18d6-a02b-44ed-af72-835937b57f0a/checkpoint`)
-  //     .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
-
-  //   expect(getCheckpointsResponse.body).toHaveProperty("message");
-  //   expect(getCheckpointsResponse.status).toBe(400);
-  // });
-});
+ });

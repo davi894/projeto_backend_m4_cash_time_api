@@ -37,7 +37,6 @@ const patchCheckpointService = async ({
       let minutes = difference % 60;
       return { hours: hours, minutes: minutes };
     }
-    console.log();
   }
 
   const users = AppDataSource.getRepository(User);

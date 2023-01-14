@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 interface ICheckpointPost {
   project_id: string;
   user_id: string;
@@ -20,8 +19,6 @@ interface ICheckPointInterval {
   user_id: string;
 }
 
-export { ICheckpointPost, ICheckpointGEtId, ICheckPointInterval };
-=======
 interface ICheckinRequest {
   entry: string;
   exit?: string;
@@ -36,5 +33,5 @@ interface ICheckinRequestUpdate {
   date?: string;
 }
 
-export { ICheckinRequest, ICheckinRequestUpdate };
->>>>>>> f0c7a43b5eb1667345dff08151fbec0c1e9441fc
+export { ICheckpointPost, ICheckpointGEtId, ICheckPointInterval,ICheckinRequest, ICheckinRequestUpdate };
+
