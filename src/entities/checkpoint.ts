@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from "typeorm";
 
 import { User } from "./user";
 import { Projects } from "./projects";
@@ -18,8 +24,10 @@ export class Checkpoint {
   date: string;
 
   @ManyToOne(() => User, (u) => u.id)
+  @JoinColumn()
   user_: User;
 
   @ManyToOne(() => Projects, (p) => p.id)
+  @JoinColumn()
   projects_: Projects;
 }
