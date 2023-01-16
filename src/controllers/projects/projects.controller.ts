@@ -11,7 +11,7 @@ export const createProjectsController = async (
   request: Request,
   response: Response
 ) => {
-  const json = await createProjectsService(request.body);
+  const json = await createProjectsService(request.body, request.user.id);
   return response.status(201).json(json);
 };
 

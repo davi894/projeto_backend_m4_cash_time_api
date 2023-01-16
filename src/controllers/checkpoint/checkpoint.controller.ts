@@ -1,46 +1,17 @@
 import { Request, Response } from "express";
-import { servicePostCheckpoint } from "../../services/checkpoint/postCheckpoint.service";
+import { servicePostCheckpoint } from "../../services/checkpoint/createCheckpoint.service";
 import { serializerReqCheckinPost } from "../../serializers/checkpoint/checkpoint.serializers";
-import { serviceGetIdCheckpoint } from "../../services/checkpoint/getIdCheckpoint.service";
+import { serviceGetIdCheckpoint } from "../../services/checkpoint/listIdCheckpoint.service";
 import { serializerReqCheckinGetId } from "../../serializers/checkpoint/checkpoint.serializers";
 import { ICheckPointInterval } from "../../interfaces/checkpoint";
-import getPeriodService from "../../services/checkpoint/getPeriod.service";
+import getPeriodService from "../../services/checkpoint/listPeriod.service";
 import patchCheckpointService from "../../services/checkpoint/patchCheckpoint.service";
 import { ICheckinRequestUpdate } from "../../interfaces/checkpoint";
 
-const postCheckin = {
-  project_id: "122",
-  user_id: "sss",
-  entry: "10:00",
-  output: "11:00",
-  date: "2000/12/10",
-};
-
-const getIdCheckin = {
-  project_id: "122",
-  user_id: "sss",
-  checkpoint_id: "asas",
-};
-
-const reqBody = {
-  initialRange: "2020/12/19",
-  finalInterval: "2021/12/19",
-  project_id: "string",
-  user_id: "string",
-};
-
-const reqBody2 = {
-  output: "11:00",
-  checkpoint_id: "uuid",
-  project_id: "122",
-};
-
 export const controllerPostCheckpoint = async (req: Request, res: Response) => {
-  const validatedCheckpointPost = await serializerReqCheckinPost.validate(
-    req.body
-  );
-
-  const data = await servicePostCheckpoint(validatedCheckpointPost);
+  req.body.user_id = req.user.id;
+  req.body.project_id = req.params.project_id;
+  const data = await servicePostCheckpoint(req.body);
 
   return res.status(201).json(data);
 };
@@ -49,7 +20,6 @@ export const controllerGetIdCheckpoint = async (
   req: Request,
   res: Response
 ) => {
-  
   const data = await serviceGetIdCheckpoint(req.body);
 
   return res.status(200).json(data);

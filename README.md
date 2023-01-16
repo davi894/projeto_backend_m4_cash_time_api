@@ -19,7 +19,12 @@
 ```
 POST - /user 
 {
-
+ "name":"test teste",
+ "email":"test@gmail.com",
+ "isActive": true,
+ "createdAt":"",
+ "updatedAt":"",
+ "password":"123456"
 }
 ```
 >**Dados do usuario**

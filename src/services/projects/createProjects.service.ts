@@ -3,15 +3,10 @@ import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities/projects";
 import AppError from "../../errors/AppError";
 
-export const createProjectsService = async (req: Request) => {
-  const projectsData = req.body;
-  const { id } = req.user;
-  const projectsRepository = AppDataSource.getRepository(Projects);
+export const createProjectsService = async (dataProject, userId: string) => {
+  const projectsData = dataProject;
 
-  const projects = projectsRepository.create({
-    ...projectsData,
-    user_id: { id },
-  });
+  const projectsRepository = AppDataSource.getRepository(Projects);
 
   const findProjects = await projectsRepository.findOneBy({
     name: projectsData.name,
@@ -20,6 +15,11 @@ export const createProjectsService = async (req: Request) => {
   if (findProjects) {
     throw new AppError(409, "Project Already Exists");
   }
+
+  const projects = projectsRepository.create({
+    ...projectsData,
+    user_: userId,
+  });
 
   await projectsRepository.save(projects);
 
