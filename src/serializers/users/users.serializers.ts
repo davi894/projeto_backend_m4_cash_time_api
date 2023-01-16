@@ -19,6 +19,7 @@ const userLoginSerializer: SchemaOf<IUserLogin> = yup.object().shape({
 });
 
 const userUpdateSerializer: SchemaOf<IUserUpdate> = yup.object().shape({
+  id: yup.string().notRequired(),
   email: yup.string().email(),
   name: yup.string(),
   password: yup.string(),
@@ -28,6 +29,7 @@ const userSerializer: SchemaOf<IUser> = yup.object().shape({
   id: yup.string(),
   name: yup.string(),
   email: yup.string(),
+  isActive: yup.boolean(),
   createdAt: yup.date(),
   updatedAt: yup.date(),
 });

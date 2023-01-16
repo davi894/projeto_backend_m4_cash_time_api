@@ -50,7 +50,7 @@ describe("/login", () => {
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
 
     await request(app)
-      .delete(`/user/${findUser.body.id}`)
+      .delete(`/user`)
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
 
     const response = await request(app).post("/login").send(mockedUserLogin);
@@ -59,3 +59,4 @@ describe("/login", () => {
     expect(response.status).toBe(400);
   });
 });
+/* /${findUser.body.id} */

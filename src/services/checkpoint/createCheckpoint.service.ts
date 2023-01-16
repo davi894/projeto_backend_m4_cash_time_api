@@ -19,6 +19,7 @@ const servicePostCheckpoint = async (data: any) => {
   const userData = await user.findOneByOrFail({
     id: data.user_id,
   });
+  
 
   if (!projectData) {
     throw new AppError(404, "Project not found");

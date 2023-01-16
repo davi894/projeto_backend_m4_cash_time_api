@@ -9,6 +9,15 @@ const dataSourceConfig = (): DataSourceOptions => {
   const entitiesPath: string = path.join(__dirname, "./entities/*.{js,ts}");
   const migrationsPath: string = path.join(__dirname, "./migrations/*.{js,ts}");
 
+  if (nodeEnv === "test") {
+    return {
+      type: "sqlite",
+      database: ":memory:",
+      synchronize: true,
+      entities: ["src/entities/*.ts"],
+    };
+  }
+
   if (nodeEnv === "production") {
     return {
       type: "postgres",
