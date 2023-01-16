@@ -50,7 +50,7 @@ describe("/login", () => {
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
 
     await request(app)
-      .delete(`/user/${findUser.body[0].id}`)
+      .delete(`/user/${findUser.body.id}`)
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
 
     const response = await request(app).post("/login").send(mockedUserLogin);

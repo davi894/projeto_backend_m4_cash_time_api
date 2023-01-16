@@ -5,10 +5,10 @@ import { Checkpoint } from "../../entities/checkpoint";
 import { Projects } from "../../entities/projects";
 import { User } from "../../entities/user";
 
-const servicePostCheckpoint = async (data) => {
+const servicePostCheckpoint = async (data: any) => {
   const { project_id, user_id, entry, output, date } = data;
 
-  const checkpointRepository =  AppDataSource.getRepository(Checkpoint);
+  const checkpointRepository = AppDataSource.getRepository(Checkpoint);
   const projects = AppDataSource.getRepository(Projects);
   const user = AppDataSource.getRepository(User);
 
@@ -20,13 +20,18 @@ const servicePostCheckpoint = async (data) => {
     id: data.user_id,
   });
 
-  console.log({
-    userData: userData,
-    projectData: projectData,
-  });
+  if (!projectData) {
+    throw new AppError(404, "Project not found");
+  }
+
+  if (!userData) {
+    throw new AppError(404, "User not found");
+  }
 
   const creatCheckpoint = checkpointRepository.create({
     ...data,
+    projects_: projectData.id,
+    user_: userData.id,
   });
 
   await checkpointRepository.save(creatCheckpoint);

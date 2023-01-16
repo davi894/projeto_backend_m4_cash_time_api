@@ -9,8 +9,8 @@ import patchCheckpointService from "../../services/checkpoint/patchCheckpoint.se
 import { ICheckinRequestUpdate } from "../../interfaces/checkpoint";
 
 export const controllerPostCheckpoint = async (req: Request, res: Response) => {
-  req.body.user_id = req.user.id;
   req.body.project_id = req.params.project_id;
+
   const data = await servicePostCheckpoint(req.body);
 
   return res.status(201).json(data);
