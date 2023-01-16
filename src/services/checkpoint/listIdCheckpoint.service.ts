@@ -12,21 +12,36 @@ const serviceGetIdCheckpoint = async (data: ICheckpointGEtId) => {
   const projectsRepository = AppDataSource.getRepository(Projects);
   const userRepository = AppDataSource.getRepository(User);
 
-  const foundcheckpoint = await checkpointRepository
-    .createQueryBuilder("checkpoint")
-    .leftJoinAndSelect("checkpoint.projects_id", "projects")
-    .where("projects.id = :id", { id: project_id })
-    .andWhere("checkpoint.id = :id", { id: checkpoint_id })
-    .andWhere("checkpoint.user_id  = :id", { id: user_id })
-    .getOne();
+  const checkpoint = await checkpointRepository.findOneByOrFail({
+    id: checkpoint_id,
+  });
 
-  if (!foundcheckpoint) {
+  const projects = await projectsRepository.findOneByOrFail({
+    id: checkpoint_id,
+  });
+
+  const user = await userRepository.findOneByOrFail({
+    id: user_id,
+  });
+
+  const foundcheckpoint = await projectsRepository
+    .createQueryBuilder("projects")
+    .leftJoinAndSelect("projects.checkpoint_", "checkpoint")
+    .where("checkpoint.id = :id", { id: checkpoint_id })
+    .andWhere("projects.id = :id", { id: project_id })
+    .getMany();
+
+  console.log(foundcheckpoint, "foundcheckpoint");
+
+  if (!projects) {
     throw new AppError(404, "Checkpoint not exist!");
   }
 
-  return {
-    checkpoint: [{ check1: "check1" }],
-  };
+  if (!projects) {
+    throw new AppError(404, "Checkpoint not exist!");
+  }
+
+  return { checkpoint: [{ ...checkpoint }] };
 };
 
 export { serviceGetIdCheckpoint };

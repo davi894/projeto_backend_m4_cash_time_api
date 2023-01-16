@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   OneToMany,
   UpdateDateColumn,
+  JoinColumn,
   ManyToOne,
 } from "typeorm";
 
@@ -41,8 +42,10 @@ export class Projects {
   totalTime: string;
 
   @OneToMany(() => Checkpoint, (c) => c.id)
+  @JoinColumn()
   checkpoint_: Checkpoint[];
 
   @ManyToOne(() => User, (u) => u.id)
+  @JoinColumn()
   user_: User;
 }

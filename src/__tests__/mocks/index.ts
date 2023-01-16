@@ -4,6 +4,7 @@ import {
   ICheckinRequest,
   ICheckinRequestUpdate,
 } from "../../interfaces/checkpoint";
+import { IProjectsRequest } from "../../interfaces/projects";
 const mockedUser: IUserRequest = {
   name: "maria",
   email: "maria@mail.com",
@@ -26,10 +27,12 @@ const mockedSecondUserLogin: IUserLogin = {
   password: "12345678",
 };
 
-const mockedProject: IProjectRequest = {
+const mockedProject: IProjectsRequest = {
   name: "Site de farmácia",
-  hour_value: 12.0,
-  total_value: 4800.0,
+  hourValue: 12.0,
+  totalValue: 4800.0,
+  status: "em progresso",
+  totalTime: "20h",
   description:
     "uma site para uma farmácia de grande porte, com delivery, centro de atendimento, cadastro e lgoin de usuários.",
 };
@@ -48,7 +51,20 @@ const mockedCheckpointUpdate: ICheckinRequestUpdate = {
   checkpoint_id: "",
 };
 
+const mockedUserCheckpoint: IUserRequest = {
+  name: "Lucas",
+  email: "lucas@mail.com",
+  password: "1234",
+};
+
+const mockedUserLoginCheckpoint: IUserLogin = {
+  email: "lucas@mail.com",
+  password: "1234",
+};
+
 export {
+  mockedUserLoginCheckpoint,
+  mockedUserCheckpoint,
   mockedUser,
   mockedUserLogin,
   mockedSecondUser,

@@ -23,7 +23,5 @@ export const createProjectsService = async (dataProject, userId: string) => {
 
   await projectsRepository.save(projects);
 
-  console.log(projects, " console.log(projects);");
-
   return projects;
 };

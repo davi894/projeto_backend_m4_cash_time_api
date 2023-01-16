@@ -13,9 +13,9 @@ const deleteUserService = async (userId: string): Promise<IUser> => {
     },
   });
 
- if (findUser.isActive === false) {
-    throw new AppError(400, "User doesn't exists");
-  } 
+  if (findUser.isActive === false) {
+    throw new AppError(400, "User is not active");
+  }
 
   const user = await userRepository.save({
     ...findUser,

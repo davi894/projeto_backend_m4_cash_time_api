@@ -11,5 +11,7 @@ export const getOneProjectService = async (params) => {
   if (!project) {
     throw new AppError(404, "Project not found!");
   }
+
+  
   return project;
 };

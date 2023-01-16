@@ -16,17 +16,17 @@ const createSessionService = async ({
   });
 
   if (!user) {
-    throw new AppError(403, "Email or password invalid");
+    throw new AppError(403, "Email invalid");
   }
 
   if (!user.isActive) {
-    throw new AppError(400, "Email or password invalid");
+    throw new AppError(400, "User is not active");
   }
 
   const passwordMatch = await compare(password, user.password);
 
   if (!passwordMatch) {
-    throw new AppError(403, "Email or password invalid");
+    throw new AppError(403, "password invalid");
   }
 
   const token = jwt.sign(
