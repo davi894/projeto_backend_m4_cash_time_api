@@ -5,22 +5,33 @@ import { Checkpoint } from "../../entities/checkpoint";
 import { Projects } from "../../entities/projects";
 import { User } from "../../entities/user";
 
-const servicePostCheckpoint = async (data: ICheckpointPost) => {
+const servicePostCheckpoint = async (data: any) => {
   const { project_id, user_id, entry, output, date } = data;
 
   const checkpointRepository = AppDataSource.getRepository(Checkpoint);
-  const projects = await AppDataSource.getRepository(Projects).findOne({
-    where: { id: project_id },
-  });
-  const user = await AppDataSource.getRepository(User).findOne({
-    where: { id: user_id },
+  const projects = AppDataSource.getRepository(Projects);
+  const user = AppDataSource.getRepository(User);
+
+  const projectData = await projects.findOneByOrFail({
+    id: data.project_id,
   });
 
+  const userData = await user.findOneByOrFail({
+    id: data.user_id,
+  });
+
+  if (!projectData) {
+    throw new AppError(404, "Project not found");
+  }
+
+  if (!userData) {
+    throw new AppError(404, "User not found");
+  }
+
   const creatCheckpoint = checkpointRepository.create({
-    projects_: projects,
-    user_: user,
-    date: date,
-    entry: entry,
+    ...data,
+    projects_: projectData.id,
+    user_: userData.id,
   });
 
   await checkpointRepository.save(creatCheckpoint);

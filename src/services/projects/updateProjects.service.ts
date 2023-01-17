@@ -18,5 +18,5 @@ export const updateProjectsService = async (projectsData:IProjectsUpdate,id:stri
         description: projectsData.description
     })
 
-    return [200, projects]
+    return {message: "projeto atualizado com sucesso"}
 }
