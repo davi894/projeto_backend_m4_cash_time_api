@@ -56,11 +56,16 @@ describe("/checkpoint", () => {
     mockedCheckpoint.project_id = getProjectresponse.body.id;
 
     const responseCheckpoint = await request(app)
-      .post("/checkpoint/:project_id")
+      .post(`/checkpoint/${getProjectresponse.body.id}`)
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
       .send(mockedCheckpoint);
 
-    expect(responseCheckpoint.body).toHaveProperty("message");
+    expect(responseCheckpoint.body).toHaveProperty("entry");
+    expect(responseCheckpoint.body).toHaveProperty("output");
+    expect(responseCheckpoint.body).toHaveProperty("date");
+    expect(responseCheckpoint.body).toHaveProperty("user_");
+    expect(responseCheckpoint.body).toHaveProperty("projects_");
+    expect(responseCheckpoint.body).toHaveProperty("id");
     expect(responseCheckpoint.status).toBe(201);
   });
 
@@ -93,20 +98,14 @@ describe("/checkpoint", () => {
     mockedCheckpoint.project_id = responseProject.body.id;
 
     const responseCheckpoint = await request(app)
-      .get(`/checkpoint/:${responseProject.body.id}`)
+      .get(`/checkpoint/${responseProject.body.id}`)
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
       .send(mockedCheckpoint);
 
-    expect(responseCheckpoint.body).toHaveProperty("map");
-    expect(responseCheckpoint.body).toBe(
-      expect.objectContaining({
-        entry: expect.any.toString(),
-        exit: expect.any.toString(),
-        date: expect.any.toString(),
-        user_id: expect.any.toString(),
-        project_id: expect.any.toString(),
-      })
-    );
+    expect(responseCheckpoint.body).toHaveLength(1);
+    expect(responseCheckpoint.body[0]).toHaveProperty("entry");
+    expect(responseCheckpoint.body[0]).toHaveProperty("output");
+    expect(responseCheckpoint.body[0]).toHaveProperty("date");
     expect(responseCheckpoint.status).toBe(200);
   });
 
@@ -125,31 +124,6 @@ describe("/checkpoint", () => {
     expect(responseCheckpoint.status).toBe(401);
   });
 
-  test("PATCH /checkpoint/:project_id - update checkpoint in project", async () => {
-    await request(app).post("/user").send(mockedUser);
-
-    const userLoginResponse = await request(app)
-      .post("/login")
-      .send(mockedUserLogin);
-
-    const project = await request(app)
-      .post("/projects")
-      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
-      .send(mockedProject);
-
-    await request(app)
-      .get(`/projects/:${project.body.id}`)
-      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
-      .send(mockedProject);
-
-    const responseCheckpoint = await request(app)
-      .patch(`/checkpoint/:${project.body.projects_id}`)
-      .send(mockedCheckpointUpdate);
-
-    expect(responseCheckpoint.body).toHaveProperty("message");
-    expect(responseCheckpoint.status).toBe(200);
-  });
-
   test("PATCH /checkpoint/:project_id -  should not be able to update checkpoint without authorization", async () => {
     await request(app).post("/user").send(mockedUser);
 
@@ -158,10 +132,42 @@ describe("/checkpoint", () => {
     const projects = await request(app).post("/projects").send(mockedProject);
 
     const responseCheckpoint = await request(app)
-      .patch(`/checkpoint/:${projects.body.id}`)
+      .patch(`/checkpoint/${projects.body.id}`)
       .send(mockedCheckpointUpdate);
 
     expect(responseCheckpoint.body).toHaveProperty("message");
     expect(responseCheckpoint.status).toBe(401);
+  });
+
+  test("PATCH /checkpoint/:project_id - update checkpoint in project", async () => {
+    await request(app).post("/user").send(mockedUser);
+
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    mockedProject.name = "teste 11";
+    mockedProject.description = "teste 11";
+
+    const project = await request(app)
+      .post("/projects")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedProject);
+
+    const check = await request(app)
+      .post(`/checkpoint/${project.body.id}`)
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedCheckpoint);
+
+    mockedCheckpointUpdate.project_id = project.body.id;
+    mockedCheckpointUpdate.checkpoint_id = check.body.id;
+
+    const responseCheckpoint = await request(app)
+      .patch(`/checkpoint/${project.body.id}`)
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
+      .send(mockedCheckpointUpdate);
+
+    expect(responseCheckpoint.body).toHaveProperty("message");
+    expect(responseCheckpoint.status).toBe(200);
   });
 });

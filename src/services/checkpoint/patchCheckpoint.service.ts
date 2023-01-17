@@ -3,30 +3,23 @@ import { AppDataSource } from "../../data-source";
 import { Checkpoint } from "../../entities/checkpoint";
 import { Projects } from "../../entities/projects";
 import { User } from "../../entities/user";
-import {
-  ICheckinRequestUpdate,
-  ICheckpointPost,
-} from "../../interfaces/checkpoint";
+import { ICheckinRequestUpdate } from "../../interfaces/checkpoint";
 import { calculateTime, splitHour } from "../../utils";
 
-const patchCheckpointService = async ({
-  checkpoint_id,
-  output,
-  project_id,
-}: ICheckinRequestUpdate) => {
-  const projects = await AppDataSource.getRepository(Projects).findOne({
-    where: {
-      id: project_id,
-    },
-  });
-
-  const users = AppDataSource.getRepository(User);
+const patchCheckpointService = async (date, projectID: string) => {
+  AppDataSource.getRepository(User);
   const checkpointRepository = AppDataSource.getRepository(Checkpoint);
   const projectRepository = AppDataSource.getRepository(Projects);
 
+  const projects = await AppDataSource.getRepository(Projects).findOne({
+    where: {
+      id: projectID,
+    },
+  });
+
   const checkpoints = await AppDataSource.getRepository(Checkpoint).findOne({
     where: {
-      id: checkpoint_id,
+      id: date.checkpoint_id,
     },
   });
 
@@ -46,16 +39,16 @@ const patchCheckpointService = async ({
     );
   }
 
-  let outputSplited = splitHour(output);
+  let outputSplited = splitHour(date.output);
 
   if (outputSplited[0] < splitHour(checkpoints.entry)[0]) {
     outputSplited[0] = outputSplited[0] + 24;
-    output = outputSplited.join(":");
+    date.output = outputSplited.join(":");
   }
 
   const newTime = calculateTime(
     splitHour(checkpoints.entry),
-    splitHour(output),
+    splitHour(date.output),
     "dif"
   );
 
@@ -63,7 +56,7 @@ const patchCheckpointService = async ({
 
   const updateCheckpoint = checkpointRepository.create({
     ...checkpoints,
-    output: output,
+    output: date.output,
   });
 
   await checkpointRepository.save(updateCheckpoint);

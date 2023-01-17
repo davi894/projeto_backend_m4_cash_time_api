@@ -1,10 +1,10 @@
-import { IProjectRequest } from "../../interfaces/project";
 import { IUserLogin, IUserRequest } from "../../interfaces/users";
 import {
   ICheckinRequest,
   ICheckinRequestUpdate,
 } from "../../interfaces/checkpoint";
 import { IProjectsRequest } from "../../interfaces/projects";
+
 const mockedUser: IUserRequest = {
   name: "maria",
   email: "maria@mail.com",

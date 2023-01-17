@@ -17,7 +17,7 @@ export class Checkpoint {
   @Column({ type: "time" })
   entry: string;
 
-  @Column({ type: "time" })
+  @Column({ type: "time", nullable: true })
   output: string;
 
   @Column({ type: "date" })
