@@ -1,4 +1,4 @@
-import { User } from "../../entities/user"
+
 
 interface IProjectsRequest{
     name:string,

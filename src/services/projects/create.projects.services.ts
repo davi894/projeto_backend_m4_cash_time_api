@@ -3,7 +3,6 @@ import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities/projects";
 import AppError from "../../errors/AppError";
 
-
 export const createProjectsService = async (req: Request)=>{
     const projectsData = req.body
     const {id} = req.user
