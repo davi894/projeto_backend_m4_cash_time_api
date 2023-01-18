@@ -69,7 +69,7 @@ status - 200
 > **Atualização de usuário**
 
 ```
-PATCH - /user/:user_id
+PATCH - /user
 
 > envio
 
@@ -92,7 +92,7 @@ status - 200
 > **deleção de usuário pelo soft delete**
 
 ```
-DELETE - /user/:user_id
+DELETE - /user
 
 retorno
 
@@ -192,6 +192,12 @@ status - 200
 ```
 GET - /poject/:project_id/total
 
+ao enviar lembrar de colocar o id do projeto criado no parâmetro da url
+
+Ex.:
+/project/:project_id
+/project/asqssas12233-124232-12244423
+
 > resposta
 
 status - 200
@@ -272,7 +278,7 @@ PATCH - /project/:project_id
  status : "em progresso"
 }
 
-> resposta 
+> resposta
 
 status - 200
 
@@ -303,16 +309,21 @@ Ex.:
 
 ## ROTA CHECKPOINT
 
-> **Ponto de registro do início e de fim da jornada de trabalho**
+> **Ponto de registro do início da jornada de trabalho**
 
 ```
 POST - /checkpoint/:project_id
 
+
 > envio
 
+ao enviar lembrar de colocar o id do projeto criado no parâmetro da url
+
+Ex.:
+/checkpoint/:project_id
+/checkpoint/asqssas12233-124232-12244423
+
 {
-"projects_id":"ab7cfbd8-ecf1-4504-b97c-06e269b9184b",
-"user_id":"120e056e-7d20-4c35-ab4f-782560475263",
 "entry":"9:30",
 "output":"10:20",
 "date":"10/12/2022"
@@ -328,27 +339,46 @@ status - 201
 
 ```
 
-> **Listar todos os checkinpoints de um projeto em específico**
+> **Lista um  checkinpoints de um projeto em específico**
 
 ```
 GET - /checkpoint/:project_id
-{
 
+> envio
+
+ao enviar lembrar de colocar o id do projeto criado no parâmetro da url
+
+Ex.:
+/checkpoint/:project_id
+/checkpoint/asqssas12233-124232-12244423
+
+{
+	"checkpoint_id":"f64b752c-08a3-43c6-882c-017dbed7b7f7"
 }
+
+> resposta
+
+status - 200
+
+{
+	"id": "f64b752c-08a3-43c6-882c-017dbed7b7f7",
+	"entry": "09:30:00",
+	"output": "20:00:00",
+	"date": "2022-10-12"
+}
+
 ```
 
 > **Listar todos os checkinpoints do usuário**
 
 ```
-GET - /checkpoint/
+GET - /checkpoint
 
 > envio
 
 {
   "initialRange": "2022-10-12",
   "finalInterval": "2022-10-12",
-  "project_id": "ab7cfbd8-ecf1-4504-b97c-06e269b9184b",
-  "user_id": "b30d628b-8523-4048-b860-ab7e89e0ea86"
 }
 
 > resposta
@@ -389,25 +419,52 @@ status - 200
 ]
 ```
 
+> **Listar todos checkpoints de um projeto em específico**
+
+```
+GET - /checkpoint/:project_id/all
+
+> envio
+
+ao enviar lembrar de colocar o id do projeto criado no parâmetro da url
+
+Ex.:
+/checkpoint/:project_id
+/checkpoint/asqssas12233-124232-12244423
+
+> resposta
+
+status - 200
+
+[
+	{
+		"id": "f64b752c-08a3-43c6-882c-017dbed7b7f7",
+		"entry": "09:30:00",
+		"output": "18:00:00",
+		"date": "2022-10-12"
+	}
+]
+
+```
+
 > **Atualização do checkinpoint de um projeto em específico**
 
 ```
-PATCH - /checkpoint/:project_id
+PATCH - /checkpoint/:project_id/all
 
 > envio
 
 {
-	"project_id":"ab7cfbd8-ecf1-4504-b97c-06e269b9184b",
 	"output":"18:00",
 	"checkpoint_id":"4aab22e2-6163-4e0a-bec6-19b501337e0b"
 }
 
-> resposta 
+> resposta
 
 status - 200
 
 {
-
+	"message": "Checkpoint Updated"
 }
 
 ```
