@@ -3,7 +3,6 @@ import { User } from "../../entities/user";
 import { IUser } from "../../interfaces/users";
 import { userSerializer } from "../../serializers/users/users.serializers";
 
-
 const listUserService = async (userId: string): Promise<IUser> => {
   const userRepository = AppDataSource.getRepository(User);
 

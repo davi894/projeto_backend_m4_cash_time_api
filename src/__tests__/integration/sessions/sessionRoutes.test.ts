@@ -2,8 +2,6 @@ import request from "supertest";
 import { DataSource } from "typeorm";
 import app from "../../../app";
 import { AppDataSource } from "../../../data-source";
-
-
 import { mockedUser, mockedUserLogin } from "../../mocks";
 
 describe("/login", () => {
@@ -52,7 +50,7 @@ describe("/login", () => {
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
 
     await request(app)
-      .delete(`/user/${findUser.body[0].id}`)
+      .delete(`/user`)
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
 
     const response = await request(app).post("/login").send(mockedUserLogin);
@@ -61,3 +59,4 @@ describe("/login", () => {
     expect(response.status).toBe(400);
   });
 });
+

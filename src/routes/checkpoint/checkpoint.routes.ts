@@ -3,25 +3,47 @@ import {
   midValidateProjectId,
   midValidateCheckpointId,
 } from "../../middlewares/checkpoint";
-import { controllerPostCheckpoint, controllerGetIdCheckpoint, getPeriodController, patchCheckpointController } from "../../controllers/checkpoint/checkpoint.controller";
+import {
+  controllerPostCheckpoint,
+  controllerGetIdCheckpoint,
+  getPeriodController,
+  patchCheckpointController,
+  getAllProjectsCheckpointController,
+} from "../../controllers/checkpoint/checkpoint.controller";
+import ensureAuthMiddleware from "../../middlewares/ensureAuth.middleware";
 
 const routerCheckpoint = Router();
 
 routerCheckpoint.post(
-  "/checkpoint/:project_id",
+  "/:project_id",
+  ensureAuthMiddleware,
   midValidateProjectId,
   controllerPostCheckpoint
 );
 
 routerCheckpoint.get(
-  "/checkpoint/:project_id",
+  "/:project_id",
+  ensureAuthMiddleware,
   midValidateProjectId,
   midValidateCheckpointId,
   controllerGetIdCheckpoint
 );
 
-routerCheckpoint.get("/checkpoint", getPeriodController);
+routerCheckpoint.get("", ensureAuthMiddleware, getPeriodController);
 
-routerCheckpoint.patch("/checkpoint/:project_id", patchCheckpointController);
+routerCheckpoint.get(
+  "/:project_id/all",
+  midValidateProjectId,
+  ensureAuthMiddleware,
+  getAllProjectsCheckpointController
+);
+
+routerCheckpoint.patch(
+  "/:project_id",
+  ensureAuthMiddleware,
+  midValidateProjectId,
+  midValidateCheckpointId,
+  patchCheckpointController
+);
 
 export default routerCheckpoint;

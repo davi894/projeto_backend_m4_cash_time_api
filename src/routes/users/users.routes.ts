@@ -22,6 +22,7 @@ usersRoutes.post(
   createUserController
 );
 usersRoutes.get("", ensureAuthMiddleware, listUsersController);
+
 usersRoutes.patch(
   "",
   ensureDataIsValidMiddleware(userUpdateSerializer),

@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   OneToMany,
   UpdateDateColumn,
+  JoinColumn,
   ManyToOne,
 } from "typeorm";
 
@@ -19,8 +20,7 @@ export class Projects {
   @Column()
   name: string;
 
-  @Column({nullable:true})
-
+  @Column({ nullable: true })
   description: string;
 
   @CreateDateColumn()
@@ -29,21 +29,23 @@ export class Projects {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column({type:"float"})
+  @Column({ type: "float" })
   hourValue: number;
 
   @Column()
   status: string;
 
-  @Column({type:"float"})
+  @Column({ type: "float" })
   totalValue: number;
 
   @Column()
   totalTime: string;
 
   @OneToMany(() => Checkpoint, (c) => c.id)
+  @JoinColumn()
   checkpoint_: Checkpoint[];
 
   @ManyToOne(() => User, (u) => u.id)
+  @JoinColumn()
   user_: User;
 }
