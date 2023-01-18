@@ -48,7 +48,6 @@ export const patchCheckpointController = async (
   req: Request,
   res: Response
 ) => {
-  
   const finishCheckpoint = await patchCheckpointService(
     req.body,
     req.params.project_id

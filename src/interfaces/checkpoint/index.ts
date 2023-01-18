@@ -21,8 +21,6 @@ interface ICheckinRequest {
   entry: string;
   output?: string;
   date: string;
-  user_id: string;
-  project_id: string;
 }
 
 interface ICheckinRequestUpdate {

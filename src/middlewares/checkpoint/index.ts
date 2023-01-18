@@ -12,7 +12,7 @@ const midValidateProjectId = async (
   const projects = AppDataSource.getRepository(Projects);
 
   const projectData = projects.findOneByOrFail({
-    id: req.body.project_id,
+    id: req.params.project_id,
   });
 
   if (!projectData) {

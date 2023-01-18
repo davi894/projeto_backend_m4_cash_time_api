@@ -38,11 +38,9 @@ describe("/checkpoint", () => {
       .post("/login")
       .send(mockedUserLoginCheckpoint);
 
-    const responseGetUser = await request(app)
+    await request(app)
       .get("/user")
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
-
-    mockedCheckpoint.user_id = responseGetUser.body.id;
 
     const responseProject = await request(app)
       .post("/projects")
@@ -52,8 +50,6 @@ describe("/checkpoint", () => {
     const getProjectresponse = await request(app)
       .get(`/projects/${responseProject.body.id}`)
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
-
-    mockedCheckpoint.project_id = getProjectresponse.body.id;
 
     const responseCheckpoint = await request(app)
       .post(`/checkpoint/${getProjectresponse.body.id}`)
@@ -72,7 +68,7 @@ describe("/checkpoint", () => {
   test("POST /checkpoint/:project_id - should not be able to create checkpoint without authorization", async () => {
     await request(app).post("/login").send(mockedUserLogin);
 
-    await request(app).post("/projects").send(mockedProject);
+    const project = await request(app).post("/projects").send(mockedProject);
 
     const responseCheckpoint = await request(app)
       .post("/checkpoint/:project_id")
@@ -83,19 +79,18 @@ describe("/checkpoint", () => {
   });
 
   test("GET /checkpoint/:project_id - listing of all checkpoints in a project", async () => {
-    const responseRegister = await request(app).post("/user").send(mockedUser);
+    await request(app).post("/user").send(mockedUser);
 
     const userLoginResponse = await request(app)
       .post("/login")
       .send(mockedUserLogin);
 
+    mockedProject.name = "teste teste";
+
     const responseProject = await request(app)
       .post("/projects")
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
       .send(mockedProject);
-
-    mockedCheckpoint.user_id = responseRegister.body.id;
-    mockedCheckpoint.project_id = responseProject.body.id;
 
     const responseCheckpoint = await request(app)
       .get(`/checkpoint/${responseProject.body.id}`)

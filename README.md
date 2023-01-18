@@ -35,8 +35,6 @@ POST - /user
 
 > retorno
 
-status - 201
-
 {
 	"updatedAt": "2023-01-17T11:21:27.917Z",
 	"createdAt": "2023-01-17T11:21:27.917Z",
@@ -44,6 +42,18 @@ status - 201
 	"email": "teste5@gmail.com",
 	"name": "teste 5",
 	"id": "b30d628b-8523-4048-b860-ab7e89e0ea86"
+}
+
+status - 201
+
+> erro
+
+status - 409
+
+{
+
+ message: "Email already used"
+
 }
 ```
 
@@ -63,6 +73,16 @@ status - 200
 	"email": "teste4@gmail.com",
 	"name": "teste 4",
 	"id": "120e056e-7d20-4c35-ab4f-782560475263"
+}
+
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
 }
 ```
 
@@ -87,6 +107,16 @@ status - 200
 	"email": "teste2@gmail.com",
 }
 
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
 ```
 
 > **deleção de usuário pelo soft delete**
@@ -97,6 +127,24 @@ DELETE - /user
 retorno
 
 status 204 - sem body no response
+
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 400
+
+{
+
+ message: "User is not active"
+
+}
 
 ```
 
@@ -123,6 +171,41 @@ status - 200
 {
 	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoidGVzdGU1QGdtYWlsLmNvbSIsImlhdCI6MTY3Mzk1NDQ5NSwiZXhwIjoxNjc0MDQwODk1LCJzdWIiOiJiMzBkNjI4Yi04NTIzLTQwNDgtYjg2MC1hYjdlODllMGVhODYifQ.EMeQO1yzKNwv0a1UJxjBjD0DfqxmntieaA1HC90ovi4"
 }
+
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 403
+
+{
+
+ message: "password invalid"
+
+}
+
+status - 400
+
+{
+
+ message: "User is not active"
+
+}
+
+status - 403
+
+{
+
+ message: "Email invalid"
+
+}
+
 
 ```
 
@@ -162,6 +245,21 @@ status - 200
 	"updatedAt": "2023-01-17T12:33:53.318Z"
 }
 
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 409
+
+{
+	"message": "Project Already Exists"
+}
 ```
 
 > **Listagem de todos os projetos**
@@ -185,6 +283,16 @@ status - 200
 	}
 ]
 
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
 ```
 
 > **Total de um projeto**
@@ -205,6 +313,23 @@ status - 200
 {
 	"Total Value": "600.00"
 }
+
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 404
+
+{
+	message: "Project not exist!"
+}
+
 ```
 
 > **Total de todos os projetos**
@@ -234,6 +359,18 @@ status - 200
 		"totalValue": 2300
 	}
 ]
+
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+
 ```
 
 > **Listagem de um projeto em específico**
@@ -265,6 +402,23 @@ status - 200
 	"totalTime": "12:40"
 }
 
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 404
+
+{
+	message: "Project not exist!"
+}
+
+
 ```
 
 > **Atualização de um projeto em específico**
@@ -285,6 +439,22 @@ status - 200
 {
     message: "projeto atualizado com sucesso"
 }
+
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 404
+
+{
+	message: "Project not exist!"
+}
 ```
 
 > **Deleção de um projeto em específico**
@@ -303,6 +473,23 @@ Ex.:
 
  status - 204 - sem body no response
 
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 404
+
+{
+	message: "Project not exist!"
+}
+
+
 ```
 
 ---
@@ -313,7 +500,6 @@ Ex.:
 
 ```
 POST - /checkpoint/:project_id
-
 
 > envio
 
@@ -337,9 +523,27 @@ status - 201
 	"message": "Checkpoint created!"
 }
 
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 404
+
+{
+	message: "Project not exist!"
+}
+
+
+
 ```
 
-> **Lista um  checkinpoints de um projeto em específico**
+> **Lista um checkinpoints de um projeto em específico**
 
 ```
 GET - /checkpoint/:project_id
@@ -366,6 +570,24 @@ status - 200
 	"output": "20:00:00",
 	"date": "2022-10-12"
 }
+
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 404
+
+{
+	message: "Project not exist!"
+}
+
+
 
 ```
 
@@ -418,6 +640,23 @@ status - 200
 		}
 	}
 ]
+
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 404
+
+{
+	message: "Project not exist!"
+}
+
 ```
 
 > **Listar todos checkpoints de um projeto em específico**
@@ -446,6 +685,22 @@ status - 200
 	}
 ]
 
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 404
+
+{
+	message: "Project not exist!"
+}
+
 ```
 
 > **Atualização do checkinpoint de um projeto em específico**
@@ -466,6 +721,28 @@ status - 200
 
 {
 	"message": "Checkpoint Updated"
+}
+
+> erro
+
+status - 401
+
+{
+
+ message: "Invalid token"
+
+}
+
+status - 404
+
+{
+	message: "Project not exist!"
+}
+
+status - 404
+
+{
+	message: "Checkpoint not exist!"
 }
 
 ```

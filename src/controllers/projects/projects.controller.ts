@@ -51,7 +51,7 @@ export const updateProjectsController = async (
   request: Request,
   response: Response
 ) => {
-  const json = await updateProjectsService(request.body, request.params.id);
+  const json = await updateProjectsService(request.body, request.params.project_id);
   return response.status(200).json(json);
 };
 

@@ -41,14 +41,10 @@ const mockedCheckpoint: ICheckinRequest = {
   entry: "8:20",
   output: "",
   date: "2023/5/10",
-  user_id: "",
-  project_id: "",
 };
 
 const mockedCheckpointUpdate: ICheckinRequestUpdate = {
-  project_id: "",
   output: "12:20",
-  checkpoint_id: "",
 };
 
 const mockedUserCheckpoint: IUserRequest = {

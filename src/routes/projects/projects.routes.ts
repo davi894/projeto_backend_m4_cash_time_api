@@ -1,4 +1,8 @@
 import { Router } from "express";
+import {
+  midValidateProjectId,
+  midValidateCheckpointId,
+} from "../../middlewares/checkpoint";
 
 import {
   createProjectsController,
@@ -28,6 +32,7 @@ projectsRouter.get("/", ensureAuthMiddleware, listProjectsController);
 projectsRouter.get(
   "/:project_id/total",
   ensureAuthMiddleware,
+  midValidateProjectId,
   listTotalOneProjectController
 );
 projectsRouter.get(
@@ -35,11 +40,11 @@ projectsRouter.get(
   ensureAuthMiddleware,
   getTotalAllProjectsController
 );
-projectsRouter.get("/:id", ensureAuthMiddleware, getOneProjectController);
+projectsRouter.get("/:project_id", ensureAuthMiddleware, getOneProjectController);
 projectsRouter.patch(
-  "/:id",
+  "/:project_id",
   ensureAuthMiddleware,
   verifyErrorMiddleware(updateProjectsSchema),
   updateProjectsController
 );
-projectsRouter.delete("/:id", ensureAuthMiddleware, deleteProjectsController);
+projectsRouter.delete("/:project_id", ensureAuthMiddleware, deleteProjectsController);
