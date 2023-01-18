@@ -379,6 +379,7 @@ GET - /checkpoint
 {
   "initialRange": "2022-10-12",
   "finalInterval": "2022-10-12",
+  "project_id": "ab7cfbd8-ecf1-4504-b97c-06e269b9184b"
 }
 
 > resposta
