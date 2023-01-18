@@ -102,10 +102,10 @@ describe("/checkpoint", () => {
       .set("Authorization", `Bearer ${userLoginResponse.body.token}`)
       .send(mockedCheckpoint);
 
-    expect(responseCheckpoint.body).toHaveLength(1);
-    expect(responseCheckpoint.body[0]).toHaveProperty("entry");
-    expect(responseCheckpoint.body[0]).toHaveProperty("output");
-    expect(responseCheckpoint.body[0]).toHaveProperty("date");
+    expect(responseCheckpoint.body).toHaveProperty("id");
+    expect(responseCheckpoint.body).toHaveProperty("entry");
+    expect(responseCheckpoint.body).toHaveProperty("output");
+    expect(responseCheckpoint.body).toHaveProperty("date");
     expect(responseCheckpoint.status).toBe(200);
   });
 
