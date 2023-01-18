@@ -6,6 +6,7 @@ import {
   BeforeInsert,
   BeforeUpdate,
   UpdateDateColumn,
+  JoinColumn,
   OneToMany,
 } from "typeorm";
 import { hashSync, getRounds } from "bcryptjs";
@@ -36,9 +37,11 @@ export class User {
   isActive: boolean;
 
   @OneToMany(() => Projects, (p) => p.id)
+  @JoinColumn()
   projects_: Projects[];
 
   @OneToMany(() => Checkpoint, (c) => c.id)
+  @JoinColumn()
   checkpoints_: Checkpoint[];
 
   @BeforeInsert()
