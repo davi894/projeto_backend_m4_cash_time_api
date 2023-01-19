@@ -2,10 +2,7 @@ import request from "supertest";
 import { DataSource } from "typeorm";
 import app from "../../../app";
 import { AppDataSource } from "../../../data-source";
-
 import {
-  mockedSecondUser,
-  mockedSecondUserLogin,
   mockedUser,
   mockedUserLogin,
 } from "../../mocks";
@@ -77,47 +74,6 @@ describe("/user", () => {
     expect(response.status).toBe(401);
   });
 
-  test("DELETE /user -  should not be able to delete user without authentication", async () => {
-    await request(app).post("/user").send(mockedUser);
-
-    const userLoginResponse = await request(app)
-      .post("/login")
-      .send(mockedUserLogin);
-
-    await request(app)
-      .get("/user")
-      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
-
-    const response = await request(app).delete(`/user`);
-
-    expect(response.body).toHaveProperty("message");
-    expect(response.status).toBe(401);
-  });
-
-  test("DELETE /user - Must be able to soft delete user", async () => {
-    await request(app).post("/user").send(mockedUser);
-
-    const userLoginResponse = await request(app)
-      .post("/login")
-      .send(mockedUserLogin);
-
-    await request(app)
-      .get("/user")
-      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
-
-    const response = await request(app)
-      .delete(`/user`)
-      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
-
-    const findUser = await request(app)
-      .get("/user")
-      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
-
-    expect(response.status).toBe(204);
-
-    expect(findUser.body.isActive).toBe(false);
-  });
-
   test("PATCH /user - should not be able to update user without authentication", async () => {
     await request(app).post("/user").send(mockedUser);
 
@@ -168,5 +124,46 @@ describe("/user", () => {
     expect(response.body.name).toEqual("Maria Rita");
     expect(response.body.email).toEqual("mariarita@mail.com");
     expect(response.body).not.toHaveProperty("password");
+  });
+
+  test("DELETE /user -  should not be able to delete user without authentication", async () => {
+    await request(app).post("/user").send(mockedUser);
+
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    await request(app)
+      .get("/user")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
+
+    const response = await request(app).delete(`/user`);
+
+    expect(response.body).toHaveProperty("message");
+    expect(response.status).toBe(401);
+  });
+
+  test("DELETE /user - Must be able to soft delete user", async () => {
+    await request(app).post("/user").send(mockedUser);
+
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    await request(app)
+      .get("/user")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
+
+    const response = await request(app)
+      .delete(`/user`)
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
+
+    const findUser = await request(app)
+      .get("/user")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
+
+    expect(response.status).toBe(204);
+
+    expect(findUser.body.isActive).toBe(false);
   });
 });

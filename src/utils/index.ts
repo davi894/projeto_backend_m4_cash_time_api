@@ -8,9 +8,9 @@ function calculateTime(
   let operator: number;
 
   if (op === "dif") {
-    let operator = Math.abs(minutes2 - minutes1);
+    operator = Math.abs(minutes2 - minutes1);
   } else {
-    let operator = Math.abs(minutes2 + minutes1);
+    operator = Math.abs(minutes2 + minutes1);
   }
 
   let hours = Math.floor(operator / 60);

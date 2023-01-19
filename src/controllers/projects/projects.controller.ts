@@ -2,7 +2,7 @@ import { createProjectsService } from "../../services/projects/createProjects.se
 import { Request, Response } from "express";
 import { listProjectsService } from "../../services/projects/listProjects.service";
 import { getOneProjectService } from "../../services/projects/getOneProjects.service";
-import { listTotalOneProjectsService } from "../../services/projects/list.totalOneProject.service";
+import { listTotalOneProjectsService } from "../../services/projects/listTotalOneProject.service";
 import { getTotalAllProjectsService } from "../../services/projects/getTotalAllProjects.service";
 import { updateProjectsService } from "../../services/projects/updateProjects.service";
 import { deleteProjectsService } from "../../services/projects/deleteProjects.service";
@@ -27,7 +27,7 @@ export const listTotalOneProjectController = async (
   request: Request,
   response: Response
 ) => {
-  const json = await listTotalOneProjectsService(request.params.id);
+  const json = await listTotalOneProjectsService(request.params.project_id);
   return response.status(200).json(json);
 };
 
@@ -51,7 +51,7 @@ export const updateProjectsController = async (
   request: Request,
   response: Response
 ) => {
-  const json = await updateProjectsService(request.body, request.params.id);
+  const json = await updateProjectsService(request.body, request.params.project_id);
   return response.status(200).json(json);
 };
 

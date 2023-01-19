@@ -5,19 +5,21 @@ import { Checkpoint } from "../../entities/checkpoint";
 import { Projects } from "../../entities/projects";
 import { User } from "../../entities/user";
 
-const servicePostCheckpoint = async (data: any) => {
-  const { project_id, user_id, entry, output, date } = data;
-
+const servicePostCheckpoint = async (
+  data: any,
+  projectID: string,
+  userId: string
+) => {
   const checkpointRepository = AppDataSource.getRepository(Checkpoint);
   const projects = AppDataSource.getRepository(Projects);
   const user = AppDataSource.getRepository(User);
 
   const projectData = await projects.findOneByOrFail({
-    id: data.project_id,
+    id: projectID,
   });
 
   const userData = await user.findOneByOrFail({
-    id: data.user_id,
+    id: userId,
   });
 
   if (!projectData) {
@@ -36,7 +38,7 @@ const servicePostCheckpoint = async (data: any) => {
 
   await checkpointRepository.save(creatCheckpoint);
 
-  return { message: "Checkpoint created!" };
+  return creatCheckpoint;
 };
 
 export { servicePostCheckpoint };
