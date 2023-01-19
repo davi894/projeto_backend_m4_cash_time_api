@@ -19,7 +19,8 @@ export const listProjectsController = async (
   request: Request,
   response: Response
 ) => {
-  const json = await listProjectsService();
+  const userId = request.user.id;
+  const json = await listProjectsService(userId);
   return response.status(200).json(json);
 };
 
@@ -27,7 +28,9 @@ export const listTotalOneProjectController = async (
   request: Request,
   response: Response
 ) => {
-  const json = await listTotalOneProjectsService(request.params.project_id);
+  const userId = request.user.id;
+  const projectId = request.params.project_id;
+  const json = await listTotalOneProjectsService(projectId, userId);
   return response.status(200).json(json);
 };
 
@@ -43,7 +46,8 @@ export const getTotalAllProjectsController = async (
   request: Request,
   response: Response
 ) => {
-  const json = await getTotalAllProjectsService();
+  const userId = request.user.id;
+  const json = await getTotalAllProjectsService(userId);
   return response.status(200).json(json);
 };
 
@@ -51,7 +55,10 @@ export const updateProjectsController = async (
   request: Request,
   response: Response
 ) => {
-  const json = await updateProjectsService(request.body, request.params.project_id);
+  const json = await updateProjectsService(
+    request.body,
+    request.params.project_id
+  );
   return response.status(200).json(json);
 };
 

@@ -60,7 +60,8 @@ export const getAllProjectsCheckpointController = async (
   req: Request,
   res: Response
 ) => {
-  const data = await getAllProjectsCheckpointService(req.params.project_id);
+  const projectId = req.params.project_id;
+  const data = await getAllProjectsCheckpointService(projectId);
 
   return res.status(200).json(data);
 };

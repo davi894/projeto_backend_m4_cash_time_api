@@ -28,23 +28,37 @@ projectsRouter.post(
   verifyErrorMiddleware(projectSchema),
   createProjectsController
 );
+
 projectsRouter.get("/", ensureAuthMiddleware, listProjectsController);
+
 projectsRouter.get(
   "/:project_id/total",
   ensureAuthMiddleware,
   midValidateProjectId,
   listTotalOneProjectController
 );
+
 projectsRouter.get(
   "/total",
   ensureAuthMiddleware,
   getTotalAllProjectsController
 );
-projectsRouter.get("/:project_id", ensureAuthMiddleware, getOneProjectController);
+
+projectsRouter.get(
+  "/:project_id",
+  ensureAuthMiddleware,
+  getOneProjectController
+);
+
 projectsRouter.patch(
   "/:project_id",
   ensureAuthMiddleware,
   verifyErrorMiddleware(updateProjectsSchema),
   updateProjectsController
 );
-projectsRouter.delete("/:project_id", ensureAuthMiddleware, deleteProjectsController);
+
+projectsRouter.delete(
+  "/:project_id",
+  ensureAuthMiddleware,
+  deleteProjectsController
+);
